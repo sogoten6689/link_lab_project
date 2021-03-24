@@ -65,6 +65,7 @@ GEM
     concurrent-ruby (1.1.8)
     crass (1.0.6)
     erubi (1.10.0)
+    ffi (1.15.0)
     ffi (1.15.0-java)
     ffi (1.15.0-x64-mingw32)
     globalid (0.4.2)
@@ -92,6 +93,8 @@ GEM
     nokogiri (1.11.2-java)
       racc (~> 1.4)
     nokogiri (1.11.2-x64-mingw32)
+      racc (~> 1.4)
+    nokogiri (1.11.2-x86_64-darwin)
       racc (~> 1.4)
     pg (1.2.3)
     pg (1.2.3-x64-mingw32)
@@ -187,6 +190,7 @@ GEM
 PLATFORMS
   universal-java-1.8
   x64-mingw32
+  x86_64-darwin-20
 
 DEPENDENCIES
   jbuilder (~> 2.7)
