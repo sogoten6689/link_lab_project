@@ -8,6 +8,21 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme';
+import '../stylesheets/application';
+/* For AdminLTE 2.4 */
+import "admin-lte/dist/css/AdminLTE.css";
+import "admin-lte/dist/css/skins/_all-skins.css";
+import "@fortawesome/fontawesome-free/js/all";
+
+require('admin-lte');
+
+document.addEventListener("turbolinks:load", () => {
+    $('[data-toggle="tooltip"]').tooltip()
+});
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
