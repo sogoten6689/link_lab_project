@@ -18,6 +18,9 @@
       </div>
       <div class="info">
         <a href="#" class="d-block">Alexander Pierce</a>
+        <%= form_for(:user, url: destroy_user_session_path, :method => :delete) do |f| %>
+          <%= f.submit "Log out",  class: "nav-link" %>
+        <% end %>
       </div>
     </div>
 

@@ -1,4 +1,10 @@
 var = Rails.application.routes.draw do
+  namespace :admin do
+    get 'test_type/new'
+    get 'test_type/create'
+  end
+  get 'test_type/new'
+  get 'test_type/create'
   root 'home#index'
   devise_for :users
   namespace :admin do
