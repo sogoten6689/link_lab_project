@@ -1,3 +1,36 @@
-<h1>Home#index</h1>
-<%= image_tag ("/assets/AdminLTELogo.png"), class: "img-responsive"%>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="content" >
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2 text-center d-flex align-items-center justify-content-center">
+        <h1 class="text-center">LinkLab Project</h1>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+      <div class="card-body row">
+        <div class="col-5 text-center d-flex align-items-center justify-content-center">
+          <div class="">
+            <h2>Link<strong>Lab</strong></h2>
+            <p class="lead mb-5">Bình Tân, TP HCM<br>
+              Phone: +84 789 600 766
+            </p>
+            <%#= image_tag ("/assets/LinkLabLongLogo.png"), class: "img-responsive"%>
+            <%= link_to "Admin", admin_path, class: "btn btn-primary" %><br />
+          </div>
+        </div>
+        <div class="col-7">
+          <div class="form-group">
+            <%= image_tag ("/assets/pending.png"), class: "img-responsive"%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /.content -->
+</div>
