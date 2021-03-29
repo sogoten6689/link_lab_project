@@ -27,7 +27,15 @@
 
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
-
+    <!--    language-->
+    <li class="nav-item dropdown">
+      <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><%= t('language') %></a>
+      <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+        <li><%= link_to "English", {locale: "en"}, :class => "dropdown-item" %></li>
+        <li><%= link_to "Vietnamese", {locale:"vi"}, :class => "dropdown-item" %></li>
+        <!-- End Level two -->
+      </ul>
+    </li>
     <!-- Messages Dropdown Menu -->
     <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#">
@@ -122,4 +130,6 @@
     </li>
   </ul>
 </nav>
+<%= t('hello') %>
+
 <!-- /.navbar -->

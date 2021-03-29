@@ -30,12 +30,8 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: "Chao mọi người hi"
   project:
     name: "LinkLab"
-  language: "Language"
-  sidebar:
-    dataMenu: "Data menu"
-    testType: "Test Types"
-    faculty: "Faculties"
+  language: "Ngôn ngữ"
 
