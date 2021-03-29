@@ -1,0 +1,18 @@
+<%= form_for(@test_type, :url => (@test_type.new_record? ? admin_test_types_path : admin_test_type_path(@test_type))) do |f| %>
+  <div class="card-body">
+    <div class="form-group">
+      <label for="en_name">English Name</label>
+      <%= f.text_field :en_name, class: "form-control", id: "en_name", placeholder: "English Name"%>
+    </div>
+    <div class="form-group">
+      <label for="vi_name">Vietnamese Name</label>
+      <%= f.text_field :vi_name, class: "form-control", id: "vi_name", placeholder: "Vietnamese Name"%>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button type="submit" class="btn btn-primary">
+      Submit
+    </button>
+    <%= link_to "Cancel", admin_test_types_path, class: "btn btn-danger"%>
+  </div>
+<% end %>

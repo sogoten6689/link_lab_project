@@ -1,4 +1,3 @@
-
 <div class="content container-fluid">
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
@@ -11,35 +10,13 @@
           <div class="card-header">
             <h3 class="card-title">
               <%= t('testTypes.new_test_type') %>
-
             </h3>
           </div>
-          <!-- /.card-header -->
-          <!-- form start -->
-<!--          <form role="form">-->
-            <%= form_with url: admin_test_types_path do |f| %>
-            <div class="card-body">
-              <div class="form-group">
-                <label for="en_name">English Name</label>
-<!--                <input type="text" class="form-control" id="en_name" placeholder="English Name">-->
-                <%= f.text_field :en_name, class: "form-control", id: "en_name", placeholder: "English Name"%>
-              </div>
-              <div class="form-group">
-                <label for="vi_name">Vietnamese Name</label>
-                <input type="text" class="form-control" id="vi_name" placeholder="Vietnamese name">
-              </div>
-            </div>
-            <!-- /.card-body -->
-
-            <div class="card-footer">
-              <button type="submit" class="btn btn-primary">Submit</button>
-              <%= link_to "Cancel", admin_test_types_path, class: "btn btn-danger"%>
-            </div>
-<!--          </form>-->
-            <% end %>
+          <h1>
+            <%= @test_type.id %>
+          </h1>
+          <%= render "form" %>
         </div>
-        <!-- /.card -->
-
       </div>
     </div>
   </div>
