@@ -38,4 +38,9 @@ en:
     dataMenu: "Data menu"
     testType: "Test Types"
     faculty: "Faculties"
+  testTypes:
+    name: "Test Types"
+    new_button: "New Test Type"
+    new_test_type: "New Test Type"
+    new_vi_name: "Vietnamese name"
 
