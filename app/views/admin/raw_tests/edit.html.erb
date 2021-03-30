@@ -9,10 +9,10 @@
         <div class="card card-primary">
           <div class="card-header">
             <h3 class="card-title">
-              <%= t('testTypes.new_test_type') %>
+              <%= t('testTypes.edit_test_type') %>
             </h3>
           </div>
-          <%= render "form" %>
+          <%= render "form", test_type: @test_type %>
         </div>
       </div>
     </div>

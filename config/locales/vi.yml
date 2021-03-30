@@ -31,7 +31,40 @@
 
 vi:
   hello: "Chao mọi người hi"
+  home: "Trang chủ"
   project:
     name: "LinkLab"
   language: "Ngôn ngữ"
-
+  button:
+    new_btn: "Tạo mới"
+    show_btn: "Chi tiết"
+    edit_btn: "Sửa"
+    delete_btn: "Xoá"
+    update_btn: "Cập nhật"
+    cancel_btn: "Huỷ"
+  sidebar:
+    dataMenu: "Quản lý dữ liệu"
+    testType: "Gói xét nghiệm"
+    rawTest: "Xét nghiệm"
+    faculty: "Khoa"
+  testTypes:
+    name: "Gói xét nghiệm"
+    new_button: "Thêm gói xét nghiệm"
+    new_test_type: "Thêm gói xét nghiệm"
+    edit_test_type: "Sửa gói xét nghiẹm"
+    fields:
+      en_name: "Tên Tiếng Anh"
+      vi_name: "Tên Tiếng Việt"
+      action: "Thao tác"
+  rawTests:
+    name: "Xét nghiệm"
+    new_button: "Thêm xét nghiệm"
+    new_raw_test: "Thêm xét nghiệm"
+    edit_raw_test: "Sửa xét nghiẹm"
+    fields:
+      name: "Tên xét nghiệm"
+      note: "Ghi chú"
+      test_type: "Gói xét nghiệm"
+      action: "Thao tác"
+      cost: "Giá gốc"
+      tax: "Phần trăm thuế %"

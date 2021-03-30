@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_28_151207) do
+ActiveRecord::Schema.define(version: 2021_03_30_091549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "raw_tests", force: :cascade do |t|
+    t.string "name"
+    t.string "note"
+    t.integer "cost"
+    t.integer "tax"
+    t.bigint "test_type_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["test_type_id"], name: "index_raw_tests_on_test_type_id"
+  end
 
   create_table "test_types", force: :cascade do |t|
     t.string "vi_name"
@@ -36,4 +47,5 @@ ActiveRecord::Schema.define(version: 2021_03_28_151207) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "raw_tests", "test_types"
 end

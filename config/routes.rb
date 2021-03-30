@@ -6,6 +6,7 @@ var = Rails.application.routes.draw do
     namespace :admin do
       resources :faculties
       resources :test_types
+      resources :raw_tests
     end
   end
 
