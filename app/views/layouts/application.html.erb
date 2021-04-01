@@ -1,7 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+    <%= t('project.name') %>
+  </title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
@@ -12,9 +16,7 @@
 <body data-scrollbar-auto-hide="n" class="hold-transition sidebar-mini layout-fixed">
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
-  <h1>
-    <%= ENV["HELLO"] %> 111
-  </h1>
+
   <%= yield %>
 </body>
 
