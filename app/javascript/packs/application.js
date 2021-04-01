@@ -7,7 +7,7 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-require('admin-lte');
+// require('admin-lte');
 
 import 'bootstrap';
 import '../stylesheets/application.scss';
