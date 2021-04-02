@@ -10,10 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_30_091549) do
+ActiveRecord::Schema.define(version: 2021_04_02_152457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "doctors", force: :cascade do |t|
+    t.string "name"
+    t.string "position"
+    t.string "phone"
+    t.string "address"
+    t.text "image"
+    t.bigint "user_id"
+    t.bigint "lab_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lab_id"], name: "index_doctors_on_lab_id"
+    t.index ["user_id"], name: "index_doctors_on_user_id"
+  end
+
+  create_table "labs", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "phone"
+    t.string "address"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_labs_on_user_id"
+  end
 
   create_table "raw_tests", force: :cascade do |t|
     t.string "name"
@@ -47,5 +72,8 @@ ActiveRecord::Schema.define(version: 2021_03_30_091549) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "doctors", "labs"
+  add_foreign_key "doctors", "users"
+  add_foreign_key "labs", "users"
   add_foreign_key "raw_tests", "test_types"
 end

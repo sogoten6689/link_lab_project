@@ -31,13 +31,10 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
-        <li class="nav-item has-treeview menu-open">
+        <li class="nav-item menu-open">
           <a href="#" class="nav-link <%= current_menu_class?([admin_test_types_path,admin_raw_tests_path])%> ">
             <i class="nav-icon fa fa-database"></i>
-            <p>
-              <%= t('sidebar.dataMenu') %>
-              <i class="right fas fa-angle-left"></i>
-            </p>
+            <p><%= t('sidebar.dataMenu') %><i class="right fas fa-angle-left"></i></p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
@@ -56,15 +53,38 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
-            <p>
-              Simple Link
-              <span class="right badge badge-danger">New</span>
-            </p>
+
+        <li class="nav-item menu-open">
+          <a href="#" class="nav-link <%= current_menu_class?([admin_doctors_path,admin_labs_path])%> ">
+            <i class="nav-icon fa fa-building"></i>
+            <p><%= t('sidebar.labMenu') %><i class="right fas fa-angle-left"></i></p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <%= link_to admin_doctors_path, :class => "nav-link #{current_class?(admin_doctors_path)}" do %>
+                <i class="fa fa-user-md nav-icon"></i>
+                <p>
+                  <%= t('sidebar.doctor') %>
+                </p>
+              <% end %>
+              <%= link_to admin_labs_path, :class => "nav-link #{current_class?(admin_labs_path)}" do %>
+                <i class="fa fa-medkit nav-icon"></i>
+                <p>
+                  <%= t('sidebar.lab') %>
+                </p>
+              <% end %>
+            </li>
+          </ul>
         </li>
+<!--        <li class="nav-item">-->
+<!--          <a href="#" class="nav-link">-->
+<!--            <i class="nav-icon fas fa-th"></i>-->
+<!--            <p>-->
+<!--              Simple Link-->
+<!--              <span class="right badge badge-danger">New</span>-->
+<!--            </p>-->
+<!--          </a>-->
+<!--        </li>-->
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

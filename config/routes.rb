@@ -7,6 +7,8 @@ var = Rails.application.routes.draw do
       resources :faculties
       resources :test_types
       resources :raw_tests
+      resources :labs
+      resources :doctors
     end
   end
 

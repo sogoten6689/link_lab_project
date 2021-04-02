@@ -45,6 +45,9 @@ vi:
     cancel_btn: "Huỷ"
   sidebar:
     dataMenu: "Quản lý dữ liệu"
+    labMenu: "Quản lý phòng khám"
+    lab: "Phòng khám"
+    doctor: "Bác sĩ"
     testType: "Gói xét nghiệm"
     rawTest: "Xét nghiệm"
     faculty: "Khoa"
@@ -71,3 +74,33 @@ vi:
       action: "Thao tác"
       cost: "Giá gốc"
       tax: "Phần trăm thuế %"
+  doctors:
+    name: "Bác sĩ"
+    new: "Thêm bác sĩ"
+    edit: "Sửa bác sĩ"
+    fields:
+      name: "Tên bác sĩ"
+      position: "Vị trí"
+      phone: "Số điện thoại"
+      address: "Địa chỉ"
+      image: "Hình ảnh"
+      user: "Tài khoản"
+      lab: "Phòng khám"
+      email: "Email"
+      action: "Thao tác"
+    errors:
+        invalid_foreign_key: "Bác sĩ đang được sửa dụng"
+  labs:
+    name: "Phòng khám"
+    new: "Thêm phòng khám"
+    edit: "Sửa xét nghiẹm"
+    fields:
+      name: "Tên phòng khám"
+      description: "Mô tả"
+      phone: "Số điện thoại"
+      address: "Địa chỉ"
+      image: "Hình ảnh"
+      user: "Tài khoản"
+      action: "Thao tác"
+    errors:
+      invalid_foreign_key: "Phòng đang được sửa dụng"
