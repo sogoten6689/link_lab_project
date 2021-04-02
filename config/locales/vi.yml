@@ -57,6 +57,8 @@ vi:
       en_name: "Tên Tiếng Anh"
       vi_name: "Tên Tiếng Việt"
       action: "Thao tác"
+    errors:
+      invalid_foreign_key: "Gói còn chứa xét nghiệm không thể xoá!"
   rawTests:
     name: "Xét nghiệm"
     new_button: "Thêm xét nghiệm"

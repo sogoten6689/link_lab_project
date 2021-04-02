@@ -24,13 +24,7 @@
       <div class="content-header">
         <%= render "base/breadcrumbs", { breadcrumbs: defined?(@breadcrumbs) ? @breadcrumbs : nil } %>
       </div>
-
-<!--      <div class="content container-fluid">-->
-<!--      <p class="notice"><%#= notice %></p>-->
-<!--      <p class="alert"><%#= alert %></p>-->
-<!--      <div class="container-fluid">-->
-<!--      </div>-->
-<!--    </div>-->
+      <%= toastr_flash %>
 
       <%= yield %>
 
