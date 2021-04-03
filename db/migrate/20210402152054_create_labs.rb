@@ -6,7 +6,8 @@ class CreateLabs < ActiveRecord::Migration[6.1]
       t.string :phone
       t.string :address
       t.text :image
-      t.references :user, null: false, foreign_key: true
+      t.string :email
+      t.references :user, null: true, foreign_key: true
 
       t.timestamps
     end

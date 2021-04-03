@@ -102,5 +102,7 @@ vi:
       image: "Hình ảnh"
       user: "Tài khoản"
       action: "Thao tác"
+      email: "Email"
+      null_email: "Chưa cấp"
     errors:
       invalid_foreign_key: "Phòng đang được sửa dụng"
