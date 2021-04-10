@@ -16,6 +16,5 @@ module ApplicationHelper
       text = "<script>toastr.#{type}('#{message}', '', { closeButton: true, progressBar: true })</script>"
       flash_messages << text.html_safe if message
     end.join("\n").html_safe
-
   end
 end

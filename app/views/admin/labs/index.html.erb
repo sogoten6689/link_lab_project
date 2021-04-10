@@ -51,8 +51,8 @@
                     <%= lab.name %>
                   </td>
                   <td>
-                    <%= lab.image %>
-                    <%#= image_tag(lab.image.url, alt: 'Image') if lab.image? %>
+                    <%#= lab.image %>
+                    <%= image_tag(lab.image.url, alt: 'Image', class: "img-fluid mb-2") if lab.image? %>
                   </td>
                   <td>
                     <%= lab.description %>

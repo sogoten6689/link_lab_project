@@ -40,6 +40,8 @@ class Admin::LabsController < ApplicationController
 
   def destroy
     @lab = Lab.find(params[:id])
+    @lab.remove_image!
+    @lab.save
     @lab.delete
     redirect_to  admin_labs_path
   end
