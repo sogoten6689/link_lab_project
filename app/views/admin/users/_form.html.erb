@@ -1,0 +1,68 @@
+<%= form_for(@user, :url => (@user.new_record? ? admin_users_path : admin_user_path(@user))) do |f| %>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="email"><%= t('users.fields.email') %></label>
+          <%= f.text_field :email, disable: true, class: "form-control", id: "email", placeholder: t('users.fields.email') %>
+          <% @user.errors.full_messages_for(:email).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        </div>
+<!--        <div class="form-group">-->
+<!--          <label for="phone"><%#= t('users.fields.phone')  %></label>-->
+          <%#= f.text_field :phone, class: "form-control", id: "phone", placeholder: t('users.fields.phone') %>
+          <%# @user.errors.full_messages_for(:phone).each do |message| %>
+<!--            <div class="text-danger"><%#= message %></div>-->
+          <%# end %>
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label for="address"><%#= t('users.fields.address')  %></label>-->
+          <%#= f.text_field :address, class: "form-control", id: "address", placeholder: t('users.fields.address') %>
+          <%# @user.errors.full_messages_for(:address).each do |message| %>
+<!--            <div class="text-danger"><%#= message %></div>-->
+          <%# end %>
+<!--        </div>-->
+        <% if !@user.new_record? %>
+          <div class="form-group">
+            <label for="role"><%= t('users.fields.role')  %></label>
+            <%= f.select(:role, User.roles.collect {|u| [u[0], u[1]]}, {  }, { :class => 'form-control'}) %>
+            <% @user.errors.full_messages_for(:role).each do |message| %>
+              <div class="text-danger"><%= message %></div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-sm-6">
+<!--        <div class="form-group">-->
+<!--          <label for="image"><%#= t('users.fields.image')  %></label>-->
+          <%#= f.file_field :image, class: "form-control", id: "image", placeholder: t('users.fields.image') %>
+          <%# @user.errors.full_messages_for(:image).each do |message| %>
+<!--            <div class="text-danger"><%#= message %></div>-->
+          <%# end %>
+<!--        </div>-->
+
+<!--        <div class="form-group">-->
+<!--          <label for="email"><%#= t('doctors.fields.email')  %></label>-->
+          <%#= f.text_field :email, class: "form-control", id: "email", placeholder: t('doctors.fields.email') %>
+          <%# @user.errors.full_messages_for(:email).each do |message| %>
+<!--            <div class="text-danger"><%#= message %></div>-->
+          <%# end %>
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label for="description"><%#= t('users.fields.description')  %></label>-->
+          <%#= f.text_area :description, class: "form-control", id: "user", placeholder: t('users.fields.description') %>
+          <%# @user.errors.full_messages_for(:descriptionh).each do |message| %>
+<!--            <div class="text-danger"><%#= message %></div>-->
+          <%# end %>
+<!--        </div>-->
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button type="submit" class="btn btn-primary">
+      <%= @user.new_record? ? t('button.new_btn') : t('button.edit_btn') %>
+    </button>
+    <%= link_to t('button.cancel_btn'), admin_users_path, class: "btn btn-danger"%>
+  </div>
+<% end %>

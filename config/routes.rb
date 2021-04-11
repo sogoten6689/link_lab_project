@@ -3,12 +3,14 @@ var = Rails.application.routes.draw do
     root 'home#index'
     devise_for :users
     get '/admin', to: "admin#index"
+    get '/contact', to: "home#contact"
     namespace :admin do
       resources :faculties
       resources :test_types
       resources :raw_tests
       resources :labs
       resources :doctors
+      resources :users
     end
   end
 

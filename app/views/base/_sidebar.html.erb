@@ -32,11 +32,19 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item menu-open">
-          <a href="#" class="nav-link <%= current_menu_class?([admin_test_types_path,admin_raw_tests_path])%> ">
+          <a href="#" class="nav-link <%= current_menu_class?([admin_users_path,admin_test_types_path,admin_raw_tests_path])%> ">
             <i class="nav-icon fa fa-database"></i>
             <p><%= t('sidebar.dataMenu') %><i class="right fas fa-angle-left"></i></p>
           </a>
           <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <%= link_to admin_users_path, :class => "nav-link #{current_class?(admin_users_path)}" do %>
+                <i class="fa fa-user-alt nav-icon"></i>
+                <p>
+                  <%= t('sidebar.user') %>
+                </p>
+              <% end %>
+            </li>
             <li class="nav-item">
               <%= link_to admin_test_types_path, :class => "nav-link #{current_class?(admin_test_types_path)}" do %>
                 <i class="fa fa-book nav-icon"></i>
@@ -53,6 +61,15 @@
                 </p>
               <% end %>
             </li>
+
+            <li class="nav-item">
+              <%= link_to admin_raw_tests_path, :class => "nav-link #{current_class?(admin_raw_tests_path)}" do %>
+                <i class="fa fa-medkit nav-icon"></i>
+                <p>
+                  <%= t('sidebar.lab') %>
+                </p>
+              <% end %>
+            </li>
           </ul>
         </li>
 
@@ -66,7 +83,7 @@
               <%= link_to admin_labs_path, :class => "nav-link #{current_class?(admin_labs_path)}" do %>
                 <i class="fa fa-medkit nav-icon"></i>
                 <p>
-                  <%= t('sidebar.lab') %>
+                  <%= t('sidebar.my_lab') %>
                 </p>
               <% end %>
             </li>
@@ -78,6 +95,68 @@
                 </p>
               <% end %>
             </li>
+
+            <li class="nav-item">
+              <%= link_to admin_doctors_path, :class => "nav-link #{current_class?(admin_doctors_path)}" do %>
+                <i class="fa fa-calendar-alt nav-icon"></i>
+                <p>
+                  <%= t('sidebar.lab_test') %>
+                </p>
+              <% end %>
+            </li>
+
+            <li class="nav-item">
+              <%= link_to admin_doctors_path, :class => "nav-link #{current_class?(admin_doctors_path)}" do %>
+                <i class="fa fa-calendar-check nav-icon"></i>
+                <p>
+                  <%= t('sidebar.lab_test_action') %>
+                </p>
+              <% end %>
+            </li>
+
+            <li class="nav-item">
+              <%= link_to admin_doctors_path, :class => "nav-link #{current_class?(admin_doctors_path)}" do %>
+                <i class="fa fa-newspaper nav-icon"></i>
+                <p>
+                  <%= t('sidebar.post') %>
+                </p>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item menu-is-opening menu-open">
+          <a href="#" class="nav-link <%= current_menu_class?([admin_doctors_path,admin_labs_path])%> ">
+            <i class="nav-icon fa fa-folder-open"></i>
+            <p><%= t('sidebar.record') %><i class="right fas fa-angle-left"></i></p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <%= link_to admin_labs_path, :class => "nav-link #{current_class?(admin_labs_path)}" do %>
+                <i class="fa fa-file-alt nav-icon"></i>
+                <p>
+                  <%= t('sidebar.my_test') %>
+                </p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_doctors_path, :class => "nav-link #{current_class?(admin_doctors_path)}" do %>
+                <i class="fa fa-calendar-plus nav-icon"></i>
+                <p>
+                  <%= t('sidebar.register_test') %>
+                </p>
+              <% end %>
+            </li>
+
+            <li class="nav-item">
+              <%= link_to admin_doctors_path, :class => "nav-link #{current_class?(admin_doctors_path)}" do %>
+                <i class="fa fa-phone nav-icon"></i>
+                <p>
+                  <%= t('sidebar.contact') %>
+                </p>
+              <% end %>
+            </li>
+
           </ul>
         </li>
 <!--        <li class="nav-item">-->
