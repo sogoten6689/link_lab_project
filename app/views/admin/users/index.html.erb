@@ -9,7 +9,7 @@
               <%= t('users.name') %>
             </h3>
             <div class="card-tools">
-              <%= link_to t('users.new'), new_admin_user_url, class: "btn btn-primary"%>
+              <%#= link_to t('users.new'), new_admin_user_url, class: "btn btn-primary"%>
             </div>
           </div>
           <!-- /.card-header -->
@@ -18,9 +18,12 @@
               <thead>
               <tr>
                 <th style="width: 10px">#</th>
-<!--                <th>-->
-                  <%#= t('users.fields.username') %>
-<!--                </th>-->
+                <th>
+                  <%= t('users.fields.username') %>
+                </th>
+                <th>
+                  <%= t('users.fields.image') %>
+                </th>
                 <th>
                   <%= t('users.fields.email') %>
                 </th>
@@ -39,13 +42,17 @@
                     <%= user.id %>
                   </td>
                   <td>
-                    <%= user.email %>
+                    <%= user.username %>
                   </td>
-<!--                  <td>-->
-                    <%#= user.username %>
-<!--                  </td>-->
                   <td>
-                    <%= user.role %>
+                    <%= image_tag(user.image.url, alt: 'Image', class: "profile-user-img") if user.image? %>
+                  </td>
+                  <td>
+                  <%= user.email %>
+                  </td>
+                  <td>
+                    <%#= user.role %>
+                    <%=  User.human_enum_name(:roles, User.roles.key(user.role)) %>
                   </td>
                   <td>
                     <%#= link_to "Show", book %>

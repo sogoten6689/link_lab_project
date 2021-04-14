@@ -4,5 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum role: {guest: 0, doctor: 1, admin: 2}
+  enum roles: [:guest, :doctor, :admin]
+
+  mount_uploader :image, ImageUploader
 end

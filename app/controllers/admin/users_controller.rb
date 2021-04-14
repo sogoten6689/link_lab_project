@@ -48,12 +48,12 @@ class Admin::UsersController < ApplicationController
 
   private
     def new_user_params
-      params.require(:user).permit( :name, :phone, :address, :image, :description)
+      params.require(:user).permit( :username, :phone, :address, :image, :role)
     end
 
 
     def eidt_user_params
-      params.require(:user).permit( :name, :phone, :address, :image, :description, :user_id)
+      params.require(:user).permit( :username, :phone, :address, :image, :role)
     end
 
     def invalid_foreign_key

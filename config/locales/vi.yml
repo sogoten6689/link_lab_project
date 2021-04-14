@@ -121,7 +121,6 @@ vi:
     new: "Thêm tài khoản"
     edit: "Sửa tài khoản"
     fields:
-      username: "Tài khoản"
       email: "Email"
       role: "Quyền"
       address: "Địa chỉ"
@@ -129,5 +128,16 @@ vi:
       user: "Tài khoản"
       action: "Thao tác"
       null_email: "Chưa cấp"
+      position: "Vị trí"
+      phone: "Số điện thoại"
+      username: "Tên người dùng"
+      lab: "Phòng khám"
     errors:
       invalid_foreign_key: "Tài khoản đang được sửa dụng"
+  activerecord:
+    attributes:
+      user:
+        roles:
+          guest: "Khách hàng"
+          doctor: "Bác sĩ"
+          admin: "Quản trị viên"
