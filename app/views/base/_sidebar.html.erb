@@ -63,7 +63,7 @@
             </li>
 
             <li class="nav-item">
-              <%= link_to admin_raw_tests_path, :class => "nav-link #{current_class?(admin_raw_tests_path)}" do %>
+              <%= link_to admin_labs_path, :class => "nav-link #{current_class?(admin_labs_path)}" do %>
                 <i class="fa fa-medkit nav-icon"></i>
                 <p>
                   <%= t('sidebar.lab') %>
@@ -74,19 +74,30 @@
         </li>
 
         <li class="nav-item menu-is-opening menu-open">
-          <a href="#" class="nav-link <%= current_menu_class?([admin_doctors_path,admin_labs_path])%> ">
-            <i class="nav-icon fa fa-building"></i>
-            <p><%= t('sidebar.labMenu') %><i class="right fas fa-angle-left"></i></p>
-          </a>
+          <% if (!current_user.nil? && !current_user.lab_id.nil?)  %>
+            <a href="#" class="nav-link <%= current_menu_class?([admin_doctors_path,admin_lab_path(current_user.lab_id)])%> ">
+          <% else %>
+            <a href="#" class="nav-link <%= current_menu_class?([admin_doctors_path])%> ">
+          <% end %>
+              <i class="nav-icon fa fa-building"></i>
+              <p><%= t('sidebar.labMenu') %><i class="right fas fa-angle-left"></i></p>
+          <% if (!current_user.nil? && !current_user.lab_id.nil?)  %>
+            </a>
+          <% else %>
+            </a>
+          <% end %>
           <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <%= link_to admin_labs_path, :class => "nav-link #{current_class?(admin_labs_path)}" do %>
-                <i class="fa fa-medkit nav-icon"></i>
-                <p>
-                  <%= t('sidebar.my_lab') %>
-                </p>
-              <% end %>
-            </li>
+            <% if (!current_user.nil? && !current_user.lab_id.nil?)  %>
+              <li class="nav-item">
+                <%= link_to admin_lab_path(current_user.lab_id), :class => "nav-link #{current_class?(admin_lab_path(current_user.lab_id))}" do %>
+                  <i class="fa fa-medkit nav-icon"></i>
+                  <p>
+                    <%= t('sidebar.my_lab') %>
+                  </p>
+                <% end %>
+              </li>
+            <% end %>
+
             <li class="nav-item">
               <%= link_to admin_doctors_path, :class => "nav-link #{current_class?(admin_doctors_path)}" do %>
                 <i class="fa fa-user-md nav-icon"></i>

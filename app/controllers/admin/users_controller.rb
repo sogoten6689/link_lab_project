@@ -25,6 +25,7 @@ class Admin::UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    @labs = Lab.all.order(:id)
     @users = User.all.order(:id)
     @breadcrumbs = [[t('users.name'), admin_users_url], [t('users.edit'), edit_admin_user_url(params[:id])]]
   end
@@ -48,12 +49,12 @@ class Admin::UsersController < ApplicationController
 
   private
     def new_user_params
-      params.require(:user).permit( :username, :phone, :address, :image, :role)
+      params.require(:user).permit( :username, :phone, :address, :image, :role, :lab_id)
     end
 
 
     def eidt_user_params
-      params.require(:user).permit( :username, :phone, :address, :image, :role)
+      params.require(:user).permit( :username, :phone, :address, :image, :role, :lab_id)
     end
 
     def invalid_foreign_key

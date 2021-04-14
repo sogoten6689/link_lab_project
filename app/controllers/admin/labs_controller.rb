@@ -23,6 +23,11 @@ class Admin::LabsController < ApplicationController
     end
   end
 
+  def show
+    @lab = Lab.find(params[:id])
+    @breadcrumbs = [[t('labs.name'), admin_labs_url], [t('labs.name'), edit_admin_lab_url(params[:id])]]
+  end
+
   def edit
     @lab = Lab.find(params[:id])
     @users = User.all.order(:id)
