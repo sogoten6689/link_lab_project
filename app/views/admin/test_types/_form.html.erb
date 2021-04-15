@@ -1,12 +1,12 @@
 <%= form_for(@test_type, :url => (@test_type.new_record? ? admin_test_types_path : admin_test_type_path(@test_type))) do |f| %>
   <div class="card-body">
-    <div class="form-group">
-      <label for="en_name"><%= t('testTypes.fields.en_name') %></label>
-      <%= f.text_field :en_name, class: "form-control", id: "en_name", placeholder: t('testTypes.fields.en_name') %>
-      <% @test_type.errors.full_messages_for(:en_name).each do |message| %>
-        <div class="text-danger"><%= message %></div>
-      <% end %>
-    </div>
+<!--    <div class="form-group">-->
+<!--      <label for="en_name"><%#= t('testTypes.fields.en_name') %></label>-->
+      <%#= f.text_field :en_name, class: "form-control", id: "en_name", placeholder: t('testTypes.fields.en_name') %>
+      <%# @test_type.errors.full_messages_for(:en_name).each do |message| %>
+<!--        <div class="text-danger"><%#= message %></div>-->
+      <%# end %>
+<!--    </div>-->
     <div class="form-group">
       <label for="vi_name"><%= t('testTypes.fields.vi_name')  %></label>
       <%= f.text_field :vi_name, class: "form-control", id: "vi_name", placeholder: t('testTypes.fields.vi_name') %>
