@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_14_055729) do
+ActiveRecord::Schema.define(version: 2021_04_15_043201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "action_histories", force: :cascade do |t|
+    t.string "content"
+    t.string "action"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_action_histories_on_user_id"
+  end
 
   create_table "doctors", force: :cascade do |t|
     t.string "name"
@@ -27,6 +36,19 @@ ActiveRecord::Schema.define(version: 2021_04_14_055729) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["lab_id"], name: "index_doctors_on_lab_id"
     t.index ["user_id"], name: "index_doctors_on_user_id"
+  end
+
+  create_table "lab_tests", force: :cascade do |t|
+    t.boolean "active"
+    t.boolean "is_lab_price"
+    t.integer "lab_price"
+    t.integer "lab_tax"
+    t.bigint "raw_test_id", null: false
+    t.bigint "lab_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lab_id"], name: "index_lab_tests_on_lab_id"
+    t.index ["raw_test_id"], name: "index_lab_tests_on_raw_test_id"
   end
 
   create_table "labs", force: :cascade do |t|
@@ -80,8 +102,11 @@ ActiveRecord::Schema.define(version: 2021_04_14_055729) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "action_histories", "users"
   add_foreign_key "doctors", "labs"
   add_foreign_key "doctors", "users"
+  add_foreign_key "lab_tests", "labs"
+  add_foreign_key "lab_tests", "raw_tests"
   add_foreign_key "labs", "users"
   add_foreign_key "raw_tests", "test_types"
 end

@@ -11,6 +11,7 @@ var = Rails.application.routes.draw do
       resources :labs
       resources :doctors
       resources :users
+      resources :lab_tests
     end
   end
 

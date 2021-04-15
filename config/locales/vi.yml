@@ -141,3 +141,22 @@ vi:
           guest: "Khách hàng"
           doctor: "Bác sĩ"
           admin: "Quản trị viên"
+  labTests:
+    name: "Xét nghiệm"
+    new_button: "Thêm xét nghiệm"
+    new_lab_test: "Thêm xét nghiệm"
+    edit_lab_test: "Sửa xét nghiẹm"
+    fields:
+      name: "Tên xét nghiệm"
+      note: "Ghi chú"
+      test_type: "Gói xét nghiệm"
+      action: "Thao tác"
+      cost: "Giá gốc"
+      lab_tax: "Phần trăm phòng khám %"
+      raw_test: "Tên xét nghiệm"
+      lab_price: "Giá ở trung tâm"
+      is_lab_price: "Sử dụng giá phòng khám"
+      lab: "Phòng khám"
+      null_lab: "Chọn phòng khám"
+      active: "Được sử dụng xét nghệm này"
+
