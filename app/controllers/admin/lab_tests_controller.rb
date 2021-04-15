@@ -18,6 +18,7 @@ class Admin::LabTestsController < ApplicationController
 
   def create
     @lab_test = LabTest.new(lab_test_params)
+    @lab_test.lab_id = current_user.lab_id
     if @lab_test.save
       redirect_to  admin_lab_tests_path
     else
@@ -36,6 +37,7 @@ class Admin::LabTestsController < ApplicationController
 
   def update
     @lab_test = LabTest.find(params[:id])
+    @lab_test.lab_id = current_user.lab_id
     if @lab_test.update(lab_test_params)
       redirect_to  admin_lab_tests_path
     else
