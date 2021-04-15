@@ -19,10 +19,10 @@
               <tr>
                 <th style="width: 10px">#</th>
                 <th><%= t('rawTests.fields.name') %></th>
-                <th><%= t('rawTests.fields.note') %></th>
+<!--                <th><%#= t('rawTests.fields.note') %></th>-->
                 <th><%= t('rawTests.fields.test_type') %></th>
-                <th><%= t('rawTests.fields.cost') %></th>
-                <th><%= t('rawTests.fields.tax') %></th>
+<!--                <th><%#= t('rawTests.fields.cost') %></th>-->
+<!--                <th><%#= t('rawTests.fields.tax') %></th>-->
                 <th><%= t('rawTests.fields.action') %></th>
               </tr>
               </thead>
@@ -35,18 +35,18 @@
                   <td>
                     <%= raw_test.name %>
                   </td>
-                  <td>
-                    <%= raw_test.note %>
-                  </td>
+<!--                  <td>-->
+                    <%#= raw_test.note %>
+<!--                  </td>-->
                   <td>
                     <%= raw_test.test_type.vi_name %>
                   </td>
-                  <td>
-                    <%= raw_test.cost %>
-                  </td>
-                  <td>
-                    <%= raw_test.tax %>
-                  </td>
+<!--                  <td>-->
+                    <%#= raw_test.cost %>
+<!--                  </td>-->
+<!--                  <td>-->
+                    <%#= raw_test.tax %>
+<!--                  </td>-->
                   <td>
                     <%#= link_to "Show", book %>
                     <%= link_to edit_admin_raw_test_path(raw_test), class: "btn btn-warning btn-sm" do %>
