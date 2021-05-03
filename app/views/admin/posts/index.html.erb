@@ -6,10 +6,10 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">
-              <%= t('labs.name') %>
+              <%= t('users.name') %>
             </h3>
             <div class="card-tools">
-              <%= link_to t('labs.new'), new_admin_lab_url, class: "btn btn-primary"%>
+              <%#= link_to t('users.new'), new_admin_user_url, class: "btn btn-primary"%>
             </div>
           </div>
           <!-- /.card-header -->
@@ -19,62 +19,47 @@
               <tr>
                 <th style="width: 10px">#</th>
                 <th>
-                  <%= t('labs.fields.name') %>
+                  <%= t('users.fields.username') %>
                 </th>
                 <th>
-                  <%= t('labs.fields.image') %>
+                  <%= t('users.fields.image') %>
                 </th>
                 <th>
-                  <%= t('labs.fields.description') %>
+                  <%= t('users.fields.email') %>
                 </th>
                 <th>
-                  <%= t('labs.fields.phone') %>
+                  <%= t('users.fields.role') %>
                 </th>
                 <th>
-                  <%= t('labs.fields.address') %>
-                </th>
-                <th>
-                  <%= t('labs.fields.user') %>
-                </th>
-                <th>
-                  <%= t('labs.fields.action') %>
+                  <%= t('users.fields.action') %>
                 </th>
               </tr>
               </thead>
               <tbody>
-              <% @labs.each do |lab| %>
+              <% @users.each do |user| %>
                 <tr>
                   <td>
-                    <%= lab.id %>
+                    <%= user.id %>
                   </td>
                   <td>
-                    <%= lab.name %>
+                    <%= user.username %>
                   </td>
                   <td>
-                    <%= image_tag(lab.image.url, alt: 'Image', class: "img-fluid mb-2") if lab.image? %>
+                    <%= image_tag(user.image.url, alt: 'Image', class: "profile-user-img") if user.image? %>
                   </td>
                   <td>
-                    <%= lab.description %>
+                  <%= user.email %>
                   </td>
                   <td>
-                    <%= lab.phone %>
-                  </td>
-                  <td>
-                    <%= lab.address %>
-                  </td>
-                  <td>
-                    <% if !lab.user_id.nil? %>
-                      <%= lab.user.email %>
-                    <% else %>
-                    <%= t('labs.fields.null_email') %>
-                    <% end %>
+                    <%#= user.role %>
+                    <%=  User.human_enum_name(:roles, User.roles.key(user.role)) %>
                   </td>
                   <td>
                     <%#= link_to "Show", book %>
-                    <%= link_to edit_admin_lab_path(lab), class: "btn btn-warning btn-sm" do %>
+                    <%= link_to edit_admin_user_path(user), class: "btn btn-warning btn-sm" do %>
                       <i class="fas fa-edit"></i>
                     <% end %>
-                    <%= link_to admin_lab_path(lab), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm"  do %>
+                    <%= link_to admin_user_path(user ), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm"  do %>
                       <i class="fas fa-trash"></i>
                     <% end %>
                   </td>

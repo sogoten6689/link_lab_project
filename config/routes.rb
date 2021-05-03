@@ -13,6 +13,8 @@ var = Rails.application.routes.draw do
       resources :doctors
       resources :users
       resources :lab_tests
+      resources :user_tests
+      resources :posts
     end
   end
 

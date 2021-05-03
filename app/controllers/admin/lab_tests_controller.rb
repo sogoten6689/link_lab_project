@@ -22,6 +22,9 @@ class Admin::LabTestsController < ApplicationController
     if @lab_test.save
       redirect_to  admin_lab_tests_path
     else
+      @lab_test.lab_id = current_user.lab_id
+      @raw_tests = RawTest.all.order(:name)
+      @labs = Lab.all.order(:id)
       @test_types = TestType.all
       render :new, status: :unprocessable_entity
     end
