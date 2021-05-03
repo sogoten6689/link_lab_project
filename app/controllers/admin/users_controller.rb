@@ -35,6 +35,8 @@ class Admin::UsersController < ApplicationController
     if@user.update(eidt_user_params)
       redirect_to  admin_users_path
     else
+      @labs = Lab.all.order(:id)
+      @users = User.all.order(:id)
       render :edit, status: :unprocessable_entity
     end
   end
@@ -49,12 +51,12 @@ class Admin::UsersController < ApplicationController
 
   private
     def new_user_params
-      params.require(:user).permit( :username, :phone, :address, :image, :role, :lab_id)
+      params.require(:user).permit( :username, :phone, :address, :image, :role, :lab_id, :email)
     end
 
 
     def eidt_user_params
-      params.require(:user).permit( :username, :phone, :address, :image, :role, :lab_id)
+      params.require(:user).permit( :username, :phone, :address, :image, :role, :lab_id, :email, :remove_image, :file)
     end
 
     def invalid_foreign_key
