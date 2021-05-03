@@ -1,6 +1,7 @@
 var = Rails.application.routes.draw do
   scope "(:locale)", locale: /en|vi/ do
     root 'home#index'
+    get '/contact', to: 'home#contact'
     devise_for :users
     get '/admin', to: "admin#index"
     get '/contact', to: "home#contact"
