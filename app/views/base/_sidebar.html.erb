@@ -30,10 +30,10 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
-        <li class="nav-item menu-open">
+        <li class="nav-item <%= menu_open_class?([admin_users_path,admin_test_types_path,admin_raw_tests_path])%> ">
           <a href="#" class="nav-link <%= current_menu_class?([admin_users_path,admin_test_types_path,admin_raw_tests_path])%> ">
             <i class="nav-icon fa fa-database"></i>
-            <p><%= t('sidebar.dataMenu') %><i class="right fas fa-angle-left"></i></p>
+            <p><%= t('sidebar.data_menu') %><i class="right fas fa-angle-left"></i></p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
@@ -48,7 +48,7 @@
               <%= link_to admin_test_types_path, :class => "nav-link #{current_class?(admin_test_types_path)}" do %>
                 <i class="fa fa-book nav-icon"></i>
                 <p>
-                  <%= t('sidebar.testType') %>
+                  <%= t('sidebar.test_type') %>
                 </p>
               <% end %>
             </li>
@@ -56,7 +56,7 @@
               <%= link_to admin_raw_tests_path, :class => "nav-link #{current_class?(admin_raw_tests_path)}" do %>
                 <i class="fa fa-file nav-icon"></i>
                 <p>
-                  <%= t('sidebar.rawTest') %>
+                  <%= t('sidebar.raw_test') %>
                 </p>
               <% end %>
             </li>
@@ -72,14 +72,14 @@
           </ul>
         </li>
 
-        <li class="nav-item menu-is-opening menu-open">
+        <li class="nav-item menu-is-opening <%= menu_open_class?([admin_doctors_path,admin_lab_path(current_user.lab_id),admin_lab_tests_path, admin_posts_path, admin_user_tests_path])%> ">
           <% if (!current_user.nil? && !current_user.lab_id.nil?)  %>
             <a href="#" class="nav-link <%= current_menu_class?([admin_doctors_path,admin_lab_path(current_user.lab_id),admin_lab_tests_path, admin_posts_path, admin_user_tests_path])%> ">
           <% else %>
             <a href="#" class="nav-link <%= current_menu_class?([admin_doctors_path, admin_posts_path, admin_user_tests_path])%> ">
           <% end %>
               <i class="nav-icon fa fa-building"></i>
-              <p><%= t('sidebar.labMenu') %><i class="right fas fa-angle-left"></i></p>
+              <p><%= t('sidebar.lab_menu') %><i class="right fas fa-angle-left"></i></p>
           <% if (!current_user.nil? && !current_user.lab_id.nil?)  %>
             </a>
           <% else %>
@@ -135,7 +135,7 @@
           </ul>
         </li>
 
-        <li class="nav-item menu-is-opening menu-open">
+        <li class="nav-item menu-is-opening <%= menu_open_class?([admin_doctors_path,admin_labs_path])%> ">
           <a href="#" class="nav-link <%= current_menu_class?([admin_doctors_path,admin_labs_path])%> ">
             <i class="nav-icon fa fa-folder-open"></i>
             <p><%= t('sidebar.record') %><i class="right fas fa-angle-left"></i></p>

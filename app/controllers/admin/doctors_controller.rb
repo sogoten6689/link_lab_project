@@ -5,32 +5,36 @@ class Admin::DoctorsController < ApplicationController
   rescue_from ActiveRecord::InvalidForeignKey, with: :invalid_foreign_key
 
   def index
-    @doctors = Doctor.all.order(:id)
+    @doctors = User.all.where(:role => 1).order(:id)
     @breadcrumbs = [[t('doctors.name'), admin_doctors_url]]
   end
 
   def new
-    @doctor = Doctor.new
+    @user = User.new
+    @labs = Lab.all.order(:id)
     @breadcrumbs = [[t('doctors.name'), admin_doctors_url], [t('doctors.new'), new_admin_doctor_url]]
   end
 
+
   def create
-    @doctor = Doctor.new(doctor_params)
-    if @doctor.save
+    @user = User.new(new_doctor_params)
+    @user.role = 1
+    if @user.save
       redirect_to  admin_doctors_path
     else
+      @labs = Lab.all.order(:id)
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
-    @doctor = Doctor.find(params[:id])
+    @user = User.find(params[:id])
     @breadcrumbs = [[t('doctors.name'), admin_doctors_url], [t('doctors.edit'), edit_admin_doctor_url(params[:id])]]
   end
 
   def update
-    @doctor = Doctor.find(params[:id])
-    if@doctor.update(doctor_params)
+    @user = User.find(params[:id])
+    if @user.update(doctor_params)
       redirect_to  admin_doctors_path
     else
       render :edit, status: :unprocessable_entity
@@ -44,6 +48,9 @@ class Admin::DoctorsController < ApplicationController
   end
 
   private
+    def new_doctor_params
+      params.require(:user).permit( :username, :phone, :address, :image, :lab_id, :email, :password, :password_confirmation)
+    end
     def doctor_params
       params.require(:doctor).permit(:en_name, :vi_name)
     end

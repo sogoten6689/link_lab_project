@@ -6,12 +6,12 @@ class Admin::TestTypesController < ApplicationController
 
   def index
     @test_types = TestType.all.order(:id)
-    @breadcrumbs = [[t('testTypes.name'), admin_test_types_url]]
+    @breadcrumbs = [[t('test_types.name'), admin_test_types_url]]
   end
 
   def new
     @test_type = TestType.new
-    @breadcrumbs = [[t('testTypes.name'), admin_test_types_url], [t('testTypes.new_test_type'), new_admin_test_type_url]]
+    @breadcrumbs = [[t('test_types.name'), admin_test_types_url], [t('test_types.new_test_type'), new_admin_test_type_url]]
   end
 
   def create
@@ -25,7 +25,7 @@ class Admin::TestTypesController < ApplicationController
 
   def edit
     @test_type = TestType.find(params[:id])
-    @breadcrumbs = [[t('testTypes.name'), admin_test_types_url], [t('testTypes.edit_test_type'), edit_admin_test_type_url(params[:id])]]
+    @breadcrumbs = [[t('test_types.name'), admin_test_types_url], [t('test_types.edit_test_type'), edit_admin_test_type_url(params[:id])]]
   end
 
   def update

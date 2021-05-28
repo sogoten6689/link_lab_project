@@ -25,16 +25,10 @@
                   <%= t('doctors.fields.image') %>
                 </th>
                 <th>
-                  <%= t('doctors.fields.position') %>
-                </th>
-                <th>
                   <%= t('doctors.fields.phone') %>
                 </th>
                 <th>
                   <%= t('doctors.fields.address') %>
-                </th>
-                <th>
-                  <%= t('doctors.fields.user') %>
                 </th>
                 <th>
                   <%= t('doctors.fields.lab') %>
@@ -51,13 +45,10 @@
                     <%= doctor.id %>
                   </td>
                   <td>
-                    <%= doctor.name %>
+                    <%= doctor.username %>
                   </td>
                   <td>
                     <%= doctor.image %>
-                  </td>
-                  <td>
-                    <%= doctor.position %>
                   </td>
                   <td>
                     <%= doctor.phone %>
@@ -66,7 +57,7 @@
                     <%= doctor.address %>
                   </td>
                   <td>
-                    <%#= doctor.lab %>
+                    <%#= doctor.lab.name if doctor.lab? %>
                   </td>
                   <td>
                     <%#= doctor.user %>

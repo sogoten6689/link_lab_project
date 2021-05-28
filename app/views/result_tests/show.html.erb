@@ -1,0 +1,224 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+
+        <!-- Profile Image -->
+        <div class="card card-primary card-outline">
+          <div class="card-body box-profile">
+            <div class="text-center">
+              <%#= image_tag(@lab.image.url, alt: 'User profile picture', class: "profile-user-img img-fluid img-circle") if @lab.image? %>
+            </div>
+
+<!--            <h3 class="profile-username text-center"><%#= @lab.name %></h3>-->
+
+<!--            <p class="text-muted text-center"><%#= @lab.user_id %></p>-->
+
+            <ul class="list-group list-group-unbordered mb-3">
+              <li class="list-group-item">
+                <b>Bác sĩ</b> <a class="float-right">1,322</a>
+              </li>
+              <li class="list-group-item">
+                <b>Đang điều trị</b> <a class="float-right">543</a>
+              </li>
+              <li class="list-group-item">
+                <b>Thành viên</b> <a class="float-right">13,287</a>
+              </li>
+            </ul>
+
+<!--            <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>-->
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+        <!-- About Me Box -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Thông tin</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+<!--            <strong><i class="fas fa-book mr-1"></i> Education</strong>-->
+
+<!--            <p class="text-muted">-->
+<!--              B.S. in Computer Science from the University of Tennessee at Knoxville-->
+<!--            </p>-->
+
+<!--            <hr>-->
+
+            <strong><i class="fas fa-map-marker-alt mr-1"></i> <%= t("user_tests.fields.address") %></strong>
+
+            <p class="text-muted"><%= @user_test.address %></p>
+
+            <hr>
+
+            <strong><i class="fas fa-phone mr-1"></i> <%= t("user_tests.fields.phone") %></strong>
+
+            <p class="text-muted">
+<!--              <span class="tag tag-danger">UI Design</span>-->
+<!--              <span class="tag tag-success">Coding</span>-->
+<!--              <span class="tag tag-info">Javascript</span>-->
+<!--              <span class="tag tag-warning">PHP</span>-->
+              <span class="tag tag-primary"><%= @user_test.phone %></span>
+            </p>
+
+            <hr>
+
+            <strong><i class="far fa-file-alt mr-1"></i> <%= t("user_tests.fields.note") %></strong>
+
+            <p class="text-muted"><%= @user_test.note %></p>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+      <div class="col-md-9">
+        <div class="card">
+          <div class="card-header p-2">
+            <ul class="nav nav-pills">
+              <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Danh sách xét nghiệm</a></li>
+<!--              <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>-->
+<!--              <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>-->
+            </ul>
+          </div><!-- /.card-header -->
+          <div class="card-body">
+            <div class="tab-content">
+              <div class="active tab-pane" id="activity">
+
+                <table class="table table-bordered">
+                  <thead>
+                  <tr>
+                    <th style="width: 10px">#</th>
+                    <th>
+                      <%= t('result_tests.fields.name') %>
+                    </th>
+                    <th>
+                      <%= t('result_tests.fields.note') %>
+                    </th>
+                    <th>
+                      <%= t('result_tests.fields.result') %>
+                    </th>
+                    <th>
+                      <%#= t('result_users.fields.role') %>
+                    </th>
+                    <th>
+                      <%= t('result_tests.fields.action') %>
+                    </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <% @result_tests.each do |result_test| %>
+                    <tr>
+                      <td>
+                        <%= result_test.id %>
+                      </td>
+                      <td>
+                        <%= result_test.note %>
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                        <%#= result_test.lad_test_id %>
+                      </td>
+                      <td>
+                        <%#= user.role %>
+                        <%#=  User.human_enum_name(:roles, User.roles.key(user.role)) %>
+                      </td>
+                      <td>
+                        <%#= link_to "Show", book %>
+                        <a class="btn btn-warning btn-sm" onclick="editResultTest(<%= result_test.id %>)">
+                          <i class="fas fa-edit"></i>
+                        </a>
+                        <%#= link_to edit_admin_result_test_path(result_test), class: "btn btn-warning btn-sm" do %>
+<!--                          <i class="fas fa-edit"></i>-->
+                        <%# end %>
+                        <%#= link_to admin_result_test_path(result_test), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm"  do %>
+<!--                          <i class="fas fa-trash"></i>-->
+                        <%# end %>
+                      </td>
+                    </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+                <!-- /.post -->
+              </div>
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div><!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div><!-- /.container-fluid -->
+</section>
+
+<div class="modal fade show" id="modal-lg" aria-modal="true" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><%= t('result_tests.fields.name') %></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <form id="result_test_id" method="PUT">
+        <div class="modal-body">
+            <div class="card-body">
+              <div class="form-group">
+                <label for="note">Note</label>
+                <input type="text" class="form-control" id="result_test_note" name="result_test[note]">
+              </div>
+              <div class="form-group">
+                <label for="note">result</label>
+                <input type="text" class="form-control" id="result_test_result" name="result_test[result]">
+              </div>
+<!--              <div class="form-group">-->
+<!--                <label for="exampleInputFile">File input</label>-->
+<!--                <div class="input-group">-->
+<!--                  <div class="custom-file">-->
+<!--                    <input type="file" class="custom-file-input" name="result_test[file]">-->
+<!--                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>-->
+<!--                  </div>-->
+<!--                  <div class="input-group-append">-->
+<!--                    <span class="input-group-text">Upload</span>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <input type="submit" value="Go">
+<!--          <button type="submit" id="submit_modal" class="btn btn-primary">Save changes</button>-->
+        </div>
+      </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+
+<script type="text/javascript">
+  function editResultTest(id) {
+      var url_ajax = "<%= result_tests_path %>/" + id;
+      console.log(url_ajax);
+      $.ajax({
+          type: "GET",
+          dataType: "json",
+          url: url_ajax,
+          success: function (result){
+              $('#result_test_id').attr('action', url_ajax);
+              // $('#result_test_id').attr('action', url_ajax);
+              $('#modal-lg').modal('show');
+          }
+      });
+  }
+  // $('#submit_modal').submit()
+</script>

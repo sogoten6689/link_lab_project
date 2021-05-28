@@ -5,13 +5,13 @@ class Admin::RawTestsController < ApplicationController
 
   def index
     @raw_tests = RawTest.all.joins(:test_type).order(:id)
-    @breadcrumbs = [[t('rawTests.name'), admin_raw_tests_path]]
+    @breadcrumbs = [[t('raw_tests.name'), admin_raw_tests_path]]
   end
 
   def new
     @raw_test = RawTest.new
     @test_types = TestType.all
-    @breadcrumbs = [[t('rawTests.name'), admin_test_types_url], [t('rawTests.new_raw_test'), new_admin_test_type_url]]
+    @breadcrumbs = [[t('raw_tests.name'), admin_test_types_url], [t('raw_tests.new_raw_test'), new_admin_test_type_url]]
   end
 
   def create
@@ -27,7 +27,7 @@ class Admin::RawTestsController < ApplicationController
   def edit
     @raw_test = RawTest.find(params[:id])
     @test_types = TestType.all
-    @breadcrumbs = [[t('rawTests.name'), admin_test_types_url], [t('rawTests.edit_raw_test'), edit_admin_test_type_url(params[:id])]]
+    @breadcrumbs = [[t('raw_tests.name'), admin_test_types_url], [t('raw_tests.edit_raw_test'), edit_admin_test_type_url(params[:id])]]
   end
 
   def update

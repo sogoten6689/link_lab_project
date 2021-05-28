@@ -5,7 +5,7 @@ class Admin::LabTestsController < ApplicationController
 
   def index
     @lab_tests = LabTest.all.joins(:raw_test, :lab).order(:id)
-    @breadcrumbs = [[t('labTests.name'), admin_lab_tests_path]]
+    @breadcrumbs = [[t('lab_tests.name'), admin_lab_tests_path]]
   end
 
   def new
@@ -13,7 +13,7 @@ class Admin::LabTestsController < ApplicationController
     @lab_test.lab_id = current_user.lab_id
     @raw_tests = RawTest.all.order(:name)
     @labs = Lab.all.order(:id)
-    @breadcrumbs = [[t('labTests.name'), admin_test_types_url], [t('labTests.new_lab_test'), new_admin_test_type_url]]
+    @breadcrumbs = [[t('lab_tests.name'), admin_test_types_url], [t('lab_tests.new_lab_test'), new_admin_test_type_url]]
   end
 
   def create
@@ -35,7 +35,7 @@ class Admin::LabTestsController < ApplicationController
     @lab_test.lab_id = current_user.lab_id
     @raw_tests = RawTest.all.order(:name)
     @labs = Lab.all.order(:id)
-    @breadcrumbs = [[t('labTests.name'), admin_test_types_url], [t('labTests.edit_lab_test'), edit_admin_test_type_url(params[:id])]]
+    @breadcrumbs = [[t('lab_tests.name'), admin_test_types_url], [t('lab_tests.edit_lab_test'), edit_admin_test_type_url(params[:id])]]
   end
 
   def update

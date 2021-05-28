@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_15_043201) do
+ActiveRecord::Schema.define(version: 2021_05_10_155933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,11 +75,45 @@ ActiveRecord::Schema.define(version: 2021_04_15_043201) do
     t.index ["test_type_id"], name: "index_raw_tests_on_test_type_id"
   end
 
+  create_table "result_tests", force: :cascade do |t|
+    t.string "note"
+    t.string "image"
+    t.string "file"
+    t.string "result"
+    t.integer "cost"
+    t.integer "type"
+    t.string "performer"
+    t.integer "result_status"
+    t.bigint "user_test_id", null: false
+    t.bigint "lab_test_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lab_test_id"], name: "index_result_tests_on_lab_test_id"
+    t.index ["user_test_id"], name: "index_result_tests_on_user_test_id"
+  end
+
   create_table "test_types", force: :cascade do |t|
     t.string "vi_name"
     t.string "en_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_tests", force: :cascade do |t|
+    t.string "note"
+    t.string "image"
+    t.string "address"
+    t.string "phone"
+    t.string "reason"
+    t.integer "total"
+    t.integer "type"
+    t.integer "test_status"
+    t.bigint "doctor_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["doctor_id"], name: "index_user_tests_on_doctor_id"
+    t.index ["user_id"], name: "index_user_tests_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -109,4 +143,8 @@ ActiveRecord::Schema.define(version: 2021_04_15_043201) do
   add_foreign_key "lab_tests", "raw_tests"
   add_foreign_key "labs", "users"
   add_foreign_key "raw_tests", "test_types"
+  add_foreign_key "result_tests", "lab_tests"
+  add_foreign_key "result_tests", "user_tests"
+  add_foreign_key "user_tests", "users"
+  add_foreign_key "user_tests", "users", column: "doctor_id"
 end
