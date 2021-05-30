@@ -72,7 +72,7 @@
           </ul>
         </li>
 
-        <li class="nav-item menu-is-opening <%= menu_open_class?([admin_doctors_path,admin_lab_path(current_user.lab_id),admin_lab_tests_path, admin_posts_path, admin_user_tests_path])%> ">
+        <li class="nav-item menu-is-opening <%= menu_open_class?([admin_doctors_path,admin_lab_path(current_user.lab_id ? current_user.lab_id : 0),admin_lab_tests_path, admin_posts_path, admin_user_tests_path])%> ">
           <% if (!current_user.nil? && !current_user.lab_id.nil?)  %>
             <a href="#" class="nav-link <%= current_menu_class?([admin_doctors_path,admin_lab_path(current_user.lab_id),admin_lab_tests_path, admin_posts_path, admin_user_tests_path])%> ">
           <% else %>

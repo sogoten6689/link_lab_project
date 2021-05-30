@@ -23,3 +23,11 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# Heroku
+##  View logs 
+* heroku login
+* heroku logs
+
+## migrattion
+*
