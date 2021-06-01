@@ -11,6 +11,7 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
   <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
@@ -110,56 +111,35 @@
     </div>
     <footer class="bg-white">
       <div class="container py-5">
-        <div class="row py-4">
+        <div class="row">
           <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-            <h6 class="text-uppercase font-weight-bold mb-4">Follow us</h6>
-
+            <h6 class="text-uppercase font-weight-bold mb-4">Theo dõi chúng tôi</h6>
             <ul class="list-inline mt-4">
-              <li class="list-inline-item">
-                <a href="#" target="_blank" title="twitter">
-                  <i class="icon-twitter"></i>
-                  <ion-icon name="logo-twitter"></ion-icon>
-                  <i class="fas fa-twitter"></i>
-                </a></li>
-              <li class="list-inline-item"><a href="#" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></li>
-              <li class="list-inline-item"><a href="#" target="_blank" title="instagram"><i class="fa fa-instagram"></i></a></li>
-              <li class="list-inline-item"><a href="#" target="_blank" title="pinterest"><i class="fa fa-pinterest"></i></a></li>
-              <li class="list-inline-item"><a href="#" target="_blank" title="vimeo"><i class="fa fa-vimeo"></i></a></li>
+              <li class="list-inline-item"><a href="#" target="_blank" title="facebook"><i class="fab fa-facebook"></i> LinkLab</a></li>
+              <br>
+<!--              <li class="list-inline-item"><a href="#" target="_blank" title="instagram"><i class="fab fa-instagram"></i></a></li>-->
+<!--              <li class="list-inline-item"><a href="#" target="_blank" title="pinterest"><i class="fab fa-pinterest"></i></a></li>-->
+              <li class="list-inline-item"><a href="#" target="_blank" title="vimeo"><i class="fab fa-youtube"></i> Xét Nghiệm Y Khoa Channel</a></li>
             </ul>
           </div>
-<!--          <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">-->
-<!--            <h6 class="text-uppercase font-weight-bold mb-4">-->
-              <%#= t('home_page.partner') %>
-<!--            </h6>-->
-<!--            <ul class="list-unstyled mb-0">-->
-<!--              <li class="mb-2"><a href="#" class="text-muted">MindLab</a></li>-->
-<!--            </ul>-->
-<!--          </div>-->
           <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-            <h6 class="text-uppercase font-weight-bold mb-4">About us</h6>
+            <h6 class="text-uppercase font-weight-bold mb-4">Về chúng tôi</h6>
             <ul class="list-unstyled mb-0">
-              <li class="mb-2"><a href="#" class="text-muted">Adress: Gò xoài, Bình Tân, TPHCM</a></li>
-              <li class="mb-2"><a href="#" class="text-muted">Hotline: 0896411431 (24/7)</a></li>
-              <li class="mb-2"><a href="#" class="text-muted">Our Partner: MindLab</a></li>
+              <li class="mb-2"><a href="#" class="text-muted">Địa chỉ: Bình Tân, TPHCM</a></li>
+              <li class="mb-2"><a href="#" class="text-muted">Liên hệ: 0896411431 (24/7)</a></li>
             </ul>
           </div>
           <div class="col-lg-4 col-md-6 mb-lg-0">
-            <h6 class="text-uppercase font-weight-bold mb-4">Newsletter</h6>
-            <p class="text-muted mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At itaque temporibus.</p>
-            <div class="p-1 rounded border">
-              <div class="input-group">
-                <input type="email" placeholder="Enter your email address" aria-describedby="button-addon1" class="form-control border-0 shadow-0">
-                <div class="input-group-append">
-                  <button id="button-addon1" type="submit" class="btn btn-link"><i class="fa fa-paper-plane"></i></button>
-                </div>
-              </div>
-            </div>
+            <h6 class="text-uppercase font-weight-bold mb-4">Đối tác của chúng tôi</h6>
+            <ul class="list-unstyled mb-0">
+              <li class="mb-2"><a href="#" class="text-muted">MindLab</a></li>
+            </ul>
           </div>
         </div>
       </div>
 
       <!-- Copyrights -->
-      <div class="bg-light py-4">
+      <div class="bg-light">
         <div class="container text-center">
           <p class="text-muted mb-0 py-2">© LinkLab 2021.</p>
         </div>
