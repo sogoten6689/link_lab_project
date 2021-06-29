@@ -25,6 +25,7 @@ class Admin::UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    ExampleMailer.sample_email(@user).deliver
     @labs = Lab.all.order(:id)
     @users = User.all.order(:id)
     @breadcrumbs = [[t('users.name'), admin_users_url], [t('users.edit'), edit_admin_user_url(params[:id])]]
