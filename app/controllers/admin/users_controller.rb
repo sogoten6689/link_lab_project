@@ -11,21 +11,25 @@ class Admin::UsersController < ApplicationController
 
   def new
     @user = User.new
+    @labs = Lab.all.order(:id)
     @breadcrumbs = [[t('users.name'), admin_users_url], [t('users.new'), new_admin_user_url]]
   end
 
   def create
-    @user = User.new(new_user_params)
+    user_params = new_user_params
+    user_params[:password] = 123456
+    user_params[:password_confirmation] = 123456
+    @user = User.new(user_params)
     if @user.save
       redirect_to  admin_users_path
     else
+      @labs = Lab.all.order(:id)
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
     @user = User.find(params[:id])
-    ExampleMailer.sample_email(@user).deliver
     @labs = Lab.all.order(:id)
     @users = User.all.order(:id)
     @breadcrumbs = [[t('users.name'), admin_users_url], [t('users.edit'), edit_admin_user_url(params[:id])]]
@@ -33,7 +37,7 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if@user.update(eidt_user_params)
+    if@user.update(edit_user_params)
       redirect_to  admin_users_path
     else
       @labs = Lab.all.order(:id)
@@ -52,11 +56,11 @@ class Admin::UsersController < ApplicationController
 
   private
     def new_user_params
-      params.require(:user).permit( :username, :phone, :address, :image, :role, :lab_id, :email)
+      params.require(:user).permit( :username, :phone, :address, :role, :lab_id, :email)
     end
 
 
-    def eidt_user_params
+    def edit_user_params
       params.require(:user).permit( :username, :phone, :address, :image, :role, :lab_id, :email, :remove_image, :file)
     end
 

@@ -44,23 +44,20 @@
           <% end %>
           <div id="image-data"></div>
         </div>
-        <% if !@user.new_record? %>
-          <div class="form-group">
-            <label for="role"><%= t('users.fields.role')  %></label>
-            <%= f.select(:role, User.roles.collect {|u| [  User.human_enum_name(:roles, u[0]),u[1]]}, {  }, { :class => 'form-control'}) %>
-            <% @user.errors.full_messages_for(:role).each do |message| %>
+        <div class="form-group">
+          <label for="role"><%= t('users.fields.role')  %></label>
+          <%= f.select(:role, User.roles.collect {|u| [  User.human_enum_name(:roles, u[0]),u[1]]}, {  }, { :class => 'form-control'}) %>
+          <% @user.errors.full_messages_for(:role).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        </div>
+        <div class="form-group">
+            <label for="address"><%= t('labs.fields.lab')  %></label>
+            <%= f.select(:lab_id, @labs.collect {|u| [u.name, u.id]},{ include_blank: t('user.fields.null_lab') },{ :class => 'form-control'}) %>
+            <% @user.errors.full_messages_for(:lab_id).each do |message| %>
               <div class="text-danger"><%= message %></div>
             <% end %>
           </div>
-            <div class="form-group">
-              <label for="address"><%= t('labs.fields.lab')  %></label>
-              <%= f.select(:lab_id, @labs.collect {|u| [u.name, u.id]},{ include_blank: t('user.fields.null_lab') },{ :class => 'form-control'}) %>
-              <% @user.errors.full_messages_for(:lab_id).each do |message| %>
-                <div class="text-danger"><%= message %></div>
-              <% end %>
-            </div>
-        <% end %>
-
       </div>
     </div>
   </div>
@@ -73,13 +70,13 @@
 <% end %>
 
 <script type="text/javascript">
-  var urlImage = "<%= @user.image %>";
+  const urlImage = "<%= @user.image %>";
   if(urlImage){
-      $("#image").addClass("d-none");
-      $('#image_preview_id')
-          .attr('src', urlImage)
-          .width(150)
-          .height(200);
+    $('#image').addClass("d-none");
+    $('#image_preview_id')
+        .attr('src', urlImage)
+        .width(150)
+        .height(200);
   }
   else {
       $('#image_preview_id').addClass("d-none");
@@ -110,9 +107,6 @@
           $("#image_preview_id").removeClass("d-none");
           $("#remove_image_button").removeClass("d-none");
           $("#image").addClass("d-none");
-
-
       }
   }
-
 </script>
