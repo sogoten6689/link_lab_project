@@ -17,10 +17,12 @@ class Admin::UsersController < ApplicationController
 
   def create
     user_params = new_user_params
-    user_params[:password] = 123456
-    user_params[:password_confirmation] = 123456
+    password = SecureRandom.hex(8)
+    user_params[:password] = password
+    user_params[:password_confirmation] = password
     @user = User.new(user_params)
     if @user.save
+      ApplicationMailer.send_password(@user, password).deliver
       redirect_to  admin_users_path
     else
       @labs = Lab.all.order(:id)

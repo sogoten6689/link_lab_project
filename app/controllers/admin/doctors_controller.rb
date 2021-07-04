@@ -17,9 +17,14 @@ class Admin::DoctorsController < ApplicationController
 
 
   def create
-    @user = User.new(new_doctor_params)
+    user_params = new_doctor_params
+    password = SecureRandom.hex(8)
+    user_params[:password] = password
+    user_params[:password_confirmation] = password
+    @user = User.new(user_params)
     @user.role = 1
     if @user.save
+      ApplicationMailer.send_password(@user, password).deliver
       redirect_to  admin_doctors_path
     else
       @labs = Lab.all.order(:id)
@@ -42,14 +47,16 @@ class Admin::DoctorsController < ApplicationController
   end
 
   def destroy
-    @doctor = Doctor.find(params[:id])
-    @doctor.delete
+    @user = User.find(params[:id])
+    @user.remove_image!
+    @user.save
+    @user.delete
     redirect_to  admin_doctors_path
   end
 
   private
     def new_doctor_params
-      params.require(:user).permit( :username, :phone, :address, :image, :lab_id, :email, :password, :password_confirmation)
+      params.require(:user).permit( :username, :phone, :address, :image, :lab_id, :email)
     end
     def doctor_params
       params.require(:doctor).permit(:en_name, :vi_name)
