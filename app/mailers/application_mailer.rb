@@ -9,7 +9,6 @@ class ApplicationMailer < ActionMailer::Base
     @account = "Your account: " + user.email
     @password = "Your password: " + password
 
-    @user_session_url = user_session_url
     @login_text = t('login')
     mail(to: user.email, subject: "Welcome to LinkLab!")
   end
