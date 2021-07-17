@@ -28,6 +28,7 @@ Things you may want to cover:
 ##  View logs 
 * heroku login
 * heroku logs
+* heroku run db:migrate
 
 ## migrattion
 *
