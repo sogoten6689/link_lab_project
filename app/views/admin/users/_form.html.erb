@@ -55,16 +55,16 @@
       </div>
       <div class="col-sm-6">
         <div class="form-group">
-        <label for="role"><%= t('users.fields.role')  %></label>
-        <%= f.select(:role, User.roles.collect {|u| [  User.human_enum_name(:roles, u[0]),u[1]]}, {  }, { :class => 'form-control'}) %>
-        <% @user.errors.full_messages_for(:role).each do |message| %>
-          <div class="text-danger"><%= message %></div>
-        <% end %>
-      </div>
+          <label for="role"><%= t('users.fields.role')  %></label>
+          <%= f.select(:role, User.roles.collect {|u| [  User.human_enum_name(:roles, u[0]),u[1]]}, {  }, { :class => 'form-control'}) %>
+          <% @user.errors.full_messages_for(:role).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        </div>
       </div>
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="address"><%= t('labs.fields.lab')  %></label>
+          <label for="lad"><%= t('labs.fields.lab')  %></label>
           <%= f.select(:lab_id, @labs.collect {|u| [u.name, u.id]},{ include_blank: t('user.fields.null_lab') },{ :class => 'form-control'}) %>
           <% @user.errors.full_messages_for(:lab_id).each do |message| %>
             <div class="text-danger"><%= message %></div>

@@ -6,10 +6,10 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">
-              <%= t('posts.name') %>
+              <%= t('user_tests.name') %>
             </h3>
             <div class="card-tools">
-              <%= link_to t('posts.new'), new_admin_post_url, class: "btn btn-primary"%>
+              <%= link_to t('user_tests.new_user_tests'), new_admin_user_test_url, class: "btn btn-primary"%>
             </div>
           </div>
           <!-- /.card-header -->
@@ -19,55 +19,55 @@
               <tr>
                 <th style="width: 10px">#</th>
                 <th>
-                  <%= t('posts.fields.title') %>
+                  <%= t('user_tests.fields.user') %>
                 </th>
                 <th>
-                  <%= t('posts.fields.image') %>
+                  <%= t('user_tests.fields.image') %>
                 </th>
                 <th>
-                  <%= t('posts.fields.short_content') %>
+                  <%= t('user_tests.fields.reason') %>
                 </th>
                 <th>
-                  <%= t('posts.fields.created_by') %>
+                  <%= t('user_tests.fields.note') %>
                 </th>
                 <th>
-                  <%= t('posts.fields.lab') %>
-                </th>
-                <th>
-                  <%= t('posts.fields.action') %>
+                  <%= t('user_tests.fields.action') %>
                 </th>
               </tr>
               </thead>
               <tbody>
-              <% @posts.each do |post| %>
+              <% @user_tests.each do |user_test| %>
                 <tr>
                   <td>
-                    <%= post.id %>
+                    <%= user_test.id %>
                   </td>
                   <td>
-                    <%= post.title %>
+                    <%= user_test.user_id %>
                   </td>
                   <td>
-                    <%= image_tag(post.image.url, alt: 'Image', class: "profile-post-img") if post.image? %>
+                    <%= image_tag(user_test.image.url, alt: 'Image', class: "profile-user-img") if user_test.image? %>
                   </td>
                   <td>
-                    <%= post.short_content %>
+                  <%= user_test.reason %>
                   </td>
                   <td>
-                    <%= post.short_content %>
-                  </td>
-                  <td>
-                    <%#= post.role %>
-                    <%#=  User.human_enum_name(:roles, User.roles.key(post.role)) %>
+                    <%= user_test.note %>
+                    <%#=  User.human_enum_name(:roles, User.roles.key(user.role)) %>
                   </td>
                   <td>
                     <%#= link_to "Show", book %>
-                    <%= link_to edit_admin_post_path(post), class: "btn btn-warning btn-sm" do %>
-                      <i class="fas fa-edit"></i>
-                    <% end %>
-                    <%= link_to admin_post_path(post ), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm"  do %>
-                      <i class="fas fa-trash"></i>
-                    <% end %>
+                    <%# if user_test.test_status == 0 %>
+                      <%#= link_to edit_admin_user_test_path(user_test), class: "btn btn-warning btn-sm" do %>
+<!--                        <i class="fas fa-edit"></i>-->
+                      <%# end %>
+                      <%#= link_to admin_user_test_path(user_test), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm"  do %>
+<!--                        <i class="fas fa-trash"></i>-->
+                      <%# end %>
+                    <%# else %>
+                      <%= link_to admin_my_test_path(user_test), class: "btn btn-primary btn-sm" do %>
+                        <i class="fas fa-eye"></i>
+                      <% end %>
+                    <%# end %>
                   </td>
                 </tr>
               <% end %>

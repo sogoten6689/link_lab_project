@@ -4,7 +4,7 @@ var = Rails.application.routes.draw do
     get '/contact', to: 'home#contact'
     devise_for :users
     get '/admin', to: "admin#index"
-    get '/contact', to: "home#contact"
+    get '/admin/contact', to: "admin#contact"
     resources :result_tests
     namespace :admin do
       resources :faculties
@@ -15,6 +15,7 @@ var = Rails.application.routes.draw do
       resources :users
       resources :lab_tests
       resources :user_tests
+      resources :my_tests
       resources :posts
     end
   end

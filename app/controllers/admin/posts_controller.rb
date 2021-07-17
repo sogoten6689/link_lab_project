@@ -2,64 +2,59 @@ class Admin::PostsController < ApplicationController
   include AdminHelper
   layout "admin"
   before_action :is_signed_in?
-  rescue_from ActiveRecord::InvalidForeignKey, with: :invalid_foreign_key
 
   def index
-    @users = User.all.order(:id)
-    @breadcrumbs = [[t('users.name'), admin_users_url]]
+    @posts = Post.all.order(:id)
+    @breadcrumbs = [[t('posts.name'), admin_posts_url]]
   end
 
   def new
-    @user = User.new
-    @breadcrumbs = [[t('users.name'), admin_users_url], [t('users.new'), new_admin_user_url]]
+    @post = Post.new
+    @labs = Lab.all.order(:id)
+    @breadcrumbs = [[t('posts.name'), admin_posts_url], [t('posts.new'), new_admin_post_url]]
   end
 
   def create
-    @user = User.new(new_user_params)
-    if @user.save
-      redirect_to  admin_users_path
+    @post = Post.new(new_post_params)
+    @post.user_id = current_user.id
+    if @post.save
+      redirect_to  admin_posts_path
     else
+      @labs = Lab.all.order(:id)
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
-    @user = User.find(params[:id])
+    @post = Post.find(params[:id])
     @labs = Lab.all.order(:id)
-    @users = User.all.order(:id)
-    @breadcrumbs = [[t('users.name'), admin_users_url], [t('users.edit'), edit_admin_user_url(params[:id])]]
+    @breadcrumbs = [[t('posts.name'), admin_posts_url], [t('posts.edit'), edit_admin_post_url(params[:id])]]
   end
 
   def update
-    @user = User.find(params[:id])
-    if@user.update(eidt_user_params)
-      redirect_to  admin_users_path
+    @post = Post.find(params[:id])
+    if@post.update(eidt_post_params)
+      redirect_to  admin_posts_path
     else
       @labs = Lab.all.order(:id)
-      @users = User.all.order(:id)
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @user = User.find(params[:id])
-    @user.remove_image!
-    @user.save
-    @user.delete
-    redirect_to  admin_users_path
+    @post = Post.find(params[:id])
+    @post.remove_image!
+    @post.save
+    @post.delete
+    redirect_to  admin_posts_path
   end
 
   private
-    def new_user_params
-      params.require(:user).permit( :username, :phone, :address, :image, :role, :lab_id, :email)
+    def new_post_params
+      params.require(:post).permit( :title, :short_content, :full_content, :lab_id)
     end
 
-
-    def eidt_user_params
-      params.require(:user).permit( :username, :phone, :address, :image, :role, :lab_id, :email, :remove_image, :file)
-    end
-
-    def invalid_foreign_key
-      redirect_to admin_users_path, {alert: t('users.errors.invalid_foreign_key')}
+    def eidt_post_params
+      params.require(:post).permit( :title, :short_content, :full_content, :lab_id, :remove_image, :file)
     end
 end

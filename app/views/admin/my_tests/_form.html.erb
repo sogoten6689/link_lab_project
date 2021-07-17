@@ -1,0 +1,150 @@
+<%= form_for(@user_test, :url => (@user_test.new_record? ? admin_user_tests_path : admin_user_test_path(@user_test)), :html => {:id => "user_form_id"}) do |f| %>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="doctor"><%= t('user_tests.fields.doctor')  %></label>
+          <%= f.select(:doctor_id, @doctors.collect {|u| [u.username, u.id]},{ include_blank: t('user_tests.fields.null_doctor') },{ :class => 'form-control select2'}) %>
+          <% @user_test.errors.full_messages_for(:doctor_id).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        </div>
+
+        <div class="form-group">
+          <label for="doctor"><%= t('user_tests.fields.user')  %></label>
+          <%= f.select(:user_id, @users.collect {|u| [u.username, u.id]},{ include_blank: t('user_tests.fields.null_user') },{ :class => 'form-control'}) %>
+          <% @user_test.errors.full_messages_for(:user_id).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        </div>
+
+        <div class="form-group">
+          <label for="reason"><%= t('user_tests.fields.reason')  %></label>
+          <%= f.text_field :reason, class: "form-control", id: "reason", placeholder: t('user_tests.fields.reason') %>
+          <% @user_test.errors.full_messages_for(:reason).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        </div>
+
+        <div class="form-group">
+          <label for="note"><%= t('user_tests.fields.note')  %></label>
+          <%= f.text_field :note, class: "form-control", id: "note", placeholder: t('user_tests.fields.note') %>
+          <% @user_test.errors.full_messages_for(:note).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        </div>
+
+        <div class="form-group ">
+          <label for="image"><%= t('user_tests.fields.image')  %></label>
+          <br>
+          <img src="" alt="image" class="profile-user-img" id="image_preview_id">
+          <%= button_tag t('button.delete_btn'), id: "remove_image_button", class: "btn btn-danger" %>
+          <%= f.file_field :image, id: "image", :onchange => "readURL(this);"%>
+          <% @user_test.errors.full_messages_for(:image).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+          <div id="image-data"></div>
+        </div>
+
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="phone"><%= t('users.fields.phone')  %></label>
+          <%= f.text_field :phone, class: "form-control", id: "phone", placeholder: t('users.fields.phone') %>
+          <% @user_test.errors.full_messages_for(:phone).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        </div>
+
+        <div class="form-group">
+          <label for="address"><%= t('users.fields.address')  %></label>
+          <%= f.text_field :address, class: "form-control", id: "address", placeholder: t('users.fields.address') %>
+          <% @user_test.errors.full_messages_for(:address).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        </div>
+
+        <div class="form-group">
+          <label for="lab_test"><%= t('user_tests.fields.lab_test')  %></label>
+          <%= f.select(:lab_test_ids, @lab_tests.collect {|u| [u.name, u.id]}, {}, { :class => 'form-control', multiple: true}) %>
+          <% @user_test.errors.full_messages_for(:lab_test_ids).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        </div>
+
+        <div class="form-group">
+          <label for="total"><%= t('user_tests.fields.total')  %></label>
+          <%= f.text_field :total,  class: "form-control", id: "total", placeholder: t('user_tests.fields.total') %>
+          <%# @user_test.errors.full_messages_for(:total).each do |message| %>
+<!--            <div class="text-danger"><%#= message %></div>-->
+          <%# end %>
+        </div>
+
+        <div class="form-group">
+          <label for="status"><%= t('user_tests.fields.status')  %></label>
+          <%= f.select(:test_status, UserTest.statuses.collect {|u| [  UserTest.human_enum_name(:statuses, u[0]),u[1]]}, {  }, { :class => 'form-control'}) %>
+          <% @user_test.errors.full_messages_for(:test_status).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="card-footer">
+    <button type="submit" class="btn btn-primary" id="btnSubmit">
+      <%= @user_test.new_record? ? t('button.new_btn') : t('button.edit_btn') %>
+    </button>
+    <%= link_to t('button.cancel_btn'), admin_user_tests_path, class: "btn btn-danger"%>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  var urlImage = "<%= @user_test.image %>";
+  if(urlImage){
+      $("#image").addClass("d-none");
+      $('#image_preview_id')
+          .attr('src', urlImage)
+          .width(150)
+          .height(200);
+  }
+  else {
+      $('#image_preview_id').addClass("d-none");
+      $("#remove_image_button").addClass("d-none");
+  }
+
+  $("#remove_image_button").click(function (e) {
+      e.preventDefault();
+      $("#image_preview_id").addClass("d-none");
+      $("#remove_image_button").addClass("d-none");
+      $("#image").removeClass("d-none");
+      $("#image-data").append("<input name='user[remove_image]' id='remove_image' class='d-none' type='checkbox' value='1' checked='true'>");
+      document.getElementById('image').value = "";
+  });
+
+  function readURL(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+              $('#image_preview_id')
+                  .attr('src', e.target.result)
+                  .width(150)
+                  .height(200);
+          };
+
+          reader.readAsDataURL(input.files[0]);
+          $("#image_preview_id").removeClass("d-none");
+          $("#remove_image_button").removeClass("d-none");
+          $("#image").addClass("d-none");
+
+
+      }
+  }
+
+
+  $('#user_test_doctor_id').select2();
+  $('#user_test_user_id').select2();
+  $('#user_test_lab_test_ids').select2();
+
+</script>

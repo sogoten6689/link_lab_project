@@ -217,3 +217,16 @@ vi:
       status: "Trạng thái"
       phone: "Số điện thoại của Bệnh nhân"
       address: "Địa chỉ của Bệnh nhân"
+  posts:
+    name: "Bài viết"
+    new: "Thêm bài viết"
+    edit: "Sửa bài viết"
+    fields:
+      title: "Tiêu đề"
+      image: "Hình ảnh"
+      full_content: "Nội dung đầy đủ"
+      short_content: "Nội dụng ngắn"
+      created_by: "Người tạo"
+      lab: "Phòng khám"
+    errors:
+      invalid_foreign_key: "Tài khoản đang được sửa dụng"

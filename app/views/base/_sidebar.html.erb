@@ -135,14 +135,14 @@
           </ul>
         </li>
 
-        <li class="nav-item menu-is-opening <%= menu_open_class?([admin_doctors_path,admin_labs_path])%> ">
-          <a href="#" class="nav-link <%= current_menu_class?([admin_doctors_path,admin_labs_path])%> ">
+        <li class="nav-item menu-is-opening <%= menu_open_class?([admin_my_tests_path,admin_contact_path])%> ">
+          <a href="#" class="nav-link <%= current_menu_class?([admin_my_tests_path  ,admin_contact_path])%> ">
             <i class="nav-icon fa fa-folder-open"></i>
             <p><%= t('sidebar.record') %><i class="right fas fa-angle-left"></i></p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <%= link_to admin_labs_path, :class => "nav-link #{current_class?(admin_labs_path)}" do %>
+              <%= link_to admin_my_tests_path, :class => "nav-link #{current_class?(admin_my_tests_path)}" do %>
                 <i class="fa fa-file-alt nav-icon"></i>
                 <p>
                   <%= t('sidebar.my_test') %>
@@ -150,7 +150,7 @@
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to admin_doctors_path, :class => "nav-link #{current_class?(admin_doctors_path)}" do %>
+              <%= link_to new_admin_my_test_url, :class => "nav-link #{current_class?(new_admin_my_test_url)}" do %>
                 <i class="fa fa-calendar-plus nav-icon"></i>
                 <p>
                   <%= t('sidebar.register_test') %>
@@ -159,7 +159,7 @@
             </li>
 
             <li class="nav-item">
-              <%= link_to admin_doctors_path, :class => "nav-link #{current_class?(admin_doctors_path)}" do %>
+              <%= link_to admin_contact_path, :class => "nav-link #{current_class?(admin_contact_path)}" do %>
                 <i class="fa fa-phone nav-icon"></i>
                 <p>
                   <%= t('sidebar.contact') %>

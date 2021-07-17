@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_10_155933) do
+ActiveRecord::Schema.define(version: 2021_07_17_023239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,19 @@ ActiveRecord::Schema.define(version: 2021_05_10_155933) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_labs_on_user_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.string "image"
+    t.string "full_content"
+    t.string "short_content"
+    t.bigint "user_id", null: false
+    t.bigint "lab_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lab_id"], name: "index_posts_on_lab_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "raw_tests", force: :cascade do |t|
@@ -142,6 +155,8 @@ ActiveRecord::Schema.define(version: 2021_05_10_155933) do
   add_foreign_key "lab_tests", "labs"
   add_foreign_key "lab_tests", "raw_tests"
   add_foreign_key "labs", "users"
+  add_foreign_key "posts", "labs"
+  add_foreign_key "posts", "users"
   add_foreign_key "raw_tests", "test_types"
   add_foreign_key "result_tests", "lab_tests"
   add_foreign_key "result_tests", "user_tests"
