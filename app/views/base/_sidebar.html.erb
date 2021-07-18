@@ -72,7 +72,7 @@
           </ul>
         </li>
 
-        <li class="nav-item menu-is-opening <%= menu_open_class?([admin_doctors_path,admin_my_lab_path(current_user.lab_id ? current_user.lab_id : 0),admin_lab_tests_path, admin_posts_path, admin_user_tests_path])%> ">
+        <li class="nav-item <%= menu_open_class?([admin_doctors_path,admin_my_lab_path(current_user.lab_id ? current_user.lab_id : 0),admin_lab_tests_path, admin_posts_path, admin_user_tests_path])%> ">
           <% if (!current_user.nil? && !current_user.lab_id.nil?)  %>
             <a href="#" class="nav-link <%= current_menu_class?([admin_doctors_path,admin_my_lab_path(current_user.lab_id),admin_lab_tests_path, admin_posts_path, admin_user_tests_path])%> ">
           <% else %>
@@ -135,7 +135,7 @@
           </ul>
         </li>
 
-        <li class="nav-item menu-is-opening <%= menu_open_class?([admin_my_tests_path, admin_register_test_path, admin_contact_path])%> ">
+        <li class="nav-item <%= menu_open_class?([admin_my_tests_path, admin_register_test_path, admin_contact_path])%> ">
           <a href="#" class="nav-link <%= current_menu_class?([admin_my_tests_path, admin_register_test_path, admin_contact_path])%> ">
             <i class="nav-icon fa fa-folder-open"></i>
             <p><%= t('sidebar.record') %><i class="right fas fa-angle-left"></i></p>
