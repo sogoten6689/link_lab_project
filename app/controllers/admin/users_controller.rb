@@ -39,7 +39,7 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if@user.update(edit_user_params)
+    if @user.update(edit_user_params)
       redirect_to  admin_users_path
     else
       @labs = Lab.all.order(:id)
@@ -63,7 +63,7 @@ class Admin::UsersController < ApplicationController
 
 
     def edit_user_params
-      params.require(:user).permit( :username, :phone, :address, :image, :role, :lab_id, :email, :remove_image, :file)
+      params.require(:user).permit( :username, :phone, :address, :role, :image, :lab_id, :email, :file)
     end
 
     def invalid_foreign_key

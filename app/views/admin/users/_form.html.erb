@@ -10,14 +10,19 @@
           <% end %>
         </div>
       </div>
+
       <% if !@user.new_record? %>
         <div class="col-sm-6">
           <div class="form-group ">
             <label for="image"><%= t('users.fields.image')  %></label>
             <br>
-            <img src="" alt="image" class="profile-user-img" id="image_preview_id"/>
-            <%= button_tag t('button.delete_btn'), id: "remove_image_button", class: "btn btn-danger" %>
-            <%= f.file_field :image, id: "image", :onchange => "readURL(this);"%>
+
+            <input type="file" name="user[image]" class="dropify"
+                   data-max-file-size="500K"
+                   data-show-remove="true"
+                   data-default-file="<%= @user.image %>"
+                   data-allowed-file-extensions="jpg jpeg png gif svg"/>
+            <%= f.file_field :image, id: "image", class: "d-none"%>
             <% @user.errors.full_messages_for(:image).each do |message| %>
               <div class="text-danger"><%= message %></div>
             <% end %>
@@ -80,48 +85,3 @@
   </div>
 <% end %>
 
-<% content_for :javascript do %>
-  <script type="text/javascript">
-      $(document).ready(function() {
-          const urlImage = "<%= @user.image %>";
-          if(urlImage){
-              $('#image').addClass("d-none");
-              $('#image_preview_id')
-                  .attr('src', urlImage)
-                  .width(150)
-                  .height(200);
-          }
-          else {
-              $('#image_preview_id').addClass("d-none");
-              $("#remove_image_button").addClass("d-none");
-          }
-
-          $("#remove_image_button").click(function (e) {
-              e.preventDefault();
-              $("#image_preview_id").addClass("d-none");
-              $("#remove_image_button").addClass("d-none");
-              $("#image").removeClass("d-none");
-              $("#image-data").append("<input name='user[remove_image]' id='remove_image' class='d-none' type='checkbox' value='1' checked='true'>");
-              document.getElementById('image').value = "";
-          });
-
-          function readURL(input) {
-              if (input.files && input.files[0]) {
-                  var reader = new FileReader();
-
-                  reader.onload = function (e) {
-                      $('#image_preview_id')
-                          .attr('src', e.target.result)
-                          .width(150)
-                          .height(200);
-                  };
-
-                  reader.readAsDataURL(input.files[0]);
-                  $("#image_preview_id").removeClass("d-none");
-                  $("#remove_image_button").removeClass("d-none");
-                  $("#image").addClass("d-none");
-              }
-          }
-      });
-  </script>
-<% end %>

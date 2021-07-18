@@ -8,9 +8,10 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-
 import 'bootstrap'
 import '../stylesheets/application.scss'
+import '../stylesheets/dropify.min.css'
+import './dropify.min.js'
 import "@fortawesome/fontawesome-free/css/all.css";
 import 'select2'
 
@@ -24,5 +25,5 @@ document.addEventListener("turbolinks:load", () => {
 
 global.toastr = require("toastr")
 
-window.jQuery = $;
-window.$ = $;
+window.jQuery = $
+window.$ = $
