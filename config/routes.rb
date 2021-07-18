@@ -5,6 +5,8 @@ var = Rails.application.routes.draw do
     devise_for :users
     get '/admin', to: "admin#index"
     get '/admin/contact', to: "admin#contact"
+    get '/admin/register_test', to: "admin/my_tests#new"
+    post '/admin/register_test', to: "admin/my_tests#create"
     resources :result_tests
     namespace :admin do
       resources :faculties
@@ -17,6 +19,7 @@ var = Rails.application.routes.draw do
       resources :user_tests
       resources :my_tests
       resources :posts
+      resources :my_labs
     end
   end
 

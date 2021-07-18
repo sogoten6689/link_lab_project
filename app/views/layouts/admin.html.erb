@@ -41,4 +41,9 @@
   </div>
 </body>
 <%= yield :javascript %>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.select2').select2();
+    });
+</script>
 </html>

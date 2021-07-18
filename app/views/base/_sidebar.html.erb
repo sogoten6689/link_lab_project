@@ -72,9 +72,9 @@
           </ul>
         </li>
 
-        <li class="nav-item menu-is-opening <%= menu_open_class?([admin_doctors_path,admin_lab_path(current_user.lab_id ? current_user.lab_id : 0),admin_lab_tests_path, admin_posts_path, admin_user_tests_path])%> ">
+        <li class="nav-item menu-is-opening <%= menu_open_class?([admin_doctors_path,admin_my_lab_path(current_user.lab_id ? current_user.lab_id : 0),admin_lab_tests_path, admin_posts_path, admin_user_tests_path])%> ">
           <% if (!current_user.nil? && !current_user.lab_id.nil?)  %>
-            <a href="#" class="nav-link <%= current_menu_class?([admin_doctors_path,admin_lab_path(current_user.lab_id),admin_lab_tests_path, admin_posts_path, admin_user_tests_path])%> ">
+            <a href="#" class="nav-link <%= current_menu_class?([admin_doctors_path,admin_my_lab_path(current_user.lab_id),admin_lab_tests_path, admin_posts_path, admin_user_tests_path])%> ">
           <% else %>
             <a href="#" class="nav-link <%= current_menu_class?([admin_doctors_path, admin_posts_path, admin_user_tests_path])%> ">
           <% end %>
@@ -88,7 +88,7 @@
           <ul class="nav nav-treeview">
             <% if (!current_user.nil? && !current_user.lab_id.nil?)  %>
               <li class="nav-item">
-                <%= link_to admin_lab_path(current_user.lab_id), :class => "nav-link #{current_class?(admin_lab_path(current_user.lab_id))}" do %>
+                <%= link_to admin_my_lab_path(current_user.lab_id), :class => "nav-link #{current_class?(admin_my_lab_path(current_user.lab_id))}" do %>
                   <i class="fa fa-medkit nav-icon"></i>
                   <p>
                     <%= t('sidebar.my_lab') %>
@@ -135,8 +135,8 @@
           </ul>
         </li>
 
-        <li class="nav-item menu-is-opening <%= menu_open_class?([admin_my_tests_path,admin_contact_path])%> ">
-          <a href="#" class="nav-link <%= current_menu_class?([admin_my_tests_path  ,admin_contact_path])%> ">
+        <li class="nav-item menu-is-opening <%= menu_open_class?([admin_my_tests_path, admin_register_test_path, admin_contact_path])%> ">
+          <a href="#" class="nav-link <%= current_menu_class?([admin_my_tests_path, admin_register_test_path, admin_contact_path])%> ">
             <i class="nav-icon fa fa-folder-open"></i>
             <p><%= t('sidebar.record') %><i class="right fas fa-angle-left"></i></p>
           </a>
@@ -150,7 +150,7 @@
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to new_admin_my_test_url, :class => "nav-link #{current_class?(new_admin_my_test_url)}" do %>
+              <%= link_to admin_register_test_path, :class => "nav-link #{current_class?(admin_register_test_path)}" do %>
                 <i class="fa fa-calendar-plus nav-icon"></i>
                 <p>
                   <%= t('sidebar.register_test') %>
@@ -169,15 +169,6 @@
 
           </ul>
         </li>
-<!--        <li class="nav-item">-->
-<!--          <a href="#" class="nav-link">-->
-<!--            <i class="nav-icon fas fa-th"></i>-->
-<!--            <p>-->
-<!--              Simple Link-->
-<!--              <span class="right badge badge-danger">New</span>-->
-<!--            </p>-->
-<!--          </a>-->
-<!--        </li>-->
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
