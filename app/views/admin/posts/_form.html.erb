@@ -38,7 +38,7 @@
         </div>
           <div class="form-group">
             <label for="lad"><%= t('labs.fields.lab')  %></label>
-            <%= f.select(:lab_id, @labs.collect {|u| [u.name, u.id]},{ include_blank: t('user.fields.null_lab') },{ :class => 'form-control'}) %>
+            <%= f.select(:lab_id, @labs.collect {|u| [u.name, u.id]},{ include_blank: t('user.fields.null_lab') },{ :class => 'form-control select2'}) %>
             <% @post.errors.full_messages_for(:lab_id).each do |message| %>
               <div class="text-danger"><%= message %></div>
             <% end %>

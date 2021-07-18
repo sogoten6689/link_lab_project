@@ -56,7 +56,7 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label for="role"><%= t('users.fields.role')  %></label>
-          <%= f.select(:role, User.roles.collect {|u| [  User.human_enum_name(:roles, u[0]),u[1]]}, {  }, { :class => 'form-control'}) %>
+          <%= f.select(:role, User.roles.collect {|u| [  User.human_enum_name(:roles, u[0]),u[1]]}, {  }, { :class => 'form-control select2'}) %>
           <% @user.errors.full_messages_for(:role).each do |message| %>
             <div class="text-danger"><%= message %></div>
           <% end %>
@@ -65,7 +65,7 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label for="lad"><%= t('labs.fields.lab')  %></label>
-          <%= f.select(:lab_id, @labs.collect {|u| [u.name, u.id]},{ include_blank: t('user.fields.null_lab') },{ :class => 'form-control'}) %>
+          <%= f.select(:lab_id, @labs.collect {|u| [u.name, u.id]},{ include_blank: t('user.fields.null_lab') },{ :class => 'form-control select2'}) %>
           <% @user.errors.full_messages_for(:lab_id).each do |message| %>
             <div class="text-danger"><%= message %></div>
           <% end %>
@@ -82,44 +82,48 @@
   </div>
 <% end %>
 
-<script type="text/javascript">
-  const urlImage = "<%= @user.image %>";
-  if(urlImage){
-    $('#image').addClass("d-none");
-    $('#image_preview_id')
-        .attr('src', urlImage)
-        .width(150)
-        .height(200);
-  }
-  else {
-      $('#image_preview_id').addClass("d-none");
-      $("#remove_image_button").addClass("d-none");
-  }
-
-  $("#remove_image_button").click(function (e) {
-      e.preventDefault();
-      $("#image_preview_id").addClass("d-none");
-      $("#remove_image_button").addClass("d-none");
-      $("#image").removeClass("d-none");
-      $("#image-data").append("<input name='user[remove_image]' id='remove_image' class='d-none' type='checkbox' value='1' checked='true'>");
-      document.getElementById('image').value = "";
-  });
-
-  function readURL(input) {
-      if (input.files && input.files[0]) {
-          var reader = new FileReader();
-
-          reader.onload = function (e) {
+<% content_for :javascript do %>
+  <script type="text/javascript">
+      $(document).ready(function() {
+          const urlImage = "<%= @user.image %>";
+          if(urlImage){
+              $('#image').addClass("d-none");
               $('#image_preview_id')
-                  .attr('src', e.target.result)
+                  .attr('src', urlImage)
                   .width(150)
                   .height(200);
-          };
+          }
+          else {
+              $('#image_preview_id').addClass("d-none");
+              $("#remove_image_button").addClass("d-none");
+          }
 
-          reader.readAsDataURL(input.files[0]);
-          $("#image_preview_id").removeClass("d-none");
-          $("#remove_image_button").removeClass("d-none");
-          $("#image").addClass("d-none");
-      }
-  }
-</script>
+          $("#remove_image_button").click(function (e) {
+              e.preventDefault();
+              $("#image_preview_id").addClass("d-none");
+              $("#remove_image_button").addClass("d-none");
+              $("#image").removeClass("d-none");
+              $("#image-data").append("<input name='user[remove_image]' id='remove_image' class='d-none' type='checkbox' value='1' checked='true'>");
+              document.getElementById('image').value = "";
+          });
+
+          function readURL(input) {
+              if (input.files && input.files[0]) {
+                  var reader = new FileReader();
+
+                  reader.onload = function (e) {
+                      $('#image_preview_id')
+                          .attr('src', e.target.result)
+                          .width(150)
+                          .height(200);
+                  };
+
+                  reader.readAsDataURL(input.files[0]);
+                  $("#image_preview_id").removeClass("d-none");
+                  $("#remove_image_button").removeClass("d-none");
+                  $("#image").addClass("d-none");
+              }
+          }
+      });
+  </script>
+<% end %>

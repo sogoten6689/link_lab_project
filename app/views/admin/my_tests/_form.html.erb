@@ -12,7 +12,7 @@
 
         <div class="form-group">
           <label for="doctor"><%= t('user_tests.fields.user')  %></label>
-          <%= f.select(:user_id, @users.collect {|u| [u.username, u.id]},{ include_blank: t('user_tests.fields.null_user') },{ :class => 'form-control'}) %>
+          <%= f.select(:user_id, @users.collect {|u| [u.username, u.id]},{ include_blank: t('user_tests.fields.null_user') },{ :class => 'form-control select2'}) %>
           <% @user_test.errors.full_messages_for(:user_id).each do |message| %>
             <div class="text-danger"><%= message %></div>
           <% end %>
@@ -66,7 +66,7 @@
 
         <div class="form-group">
           <label for="lab_test"><%= t('user_tests.fields.lab_test')  %></label>
-          <%= f.select(:lab_test_ids, @lab_tests.collect {|u| [u.name, u.id]}, {}, { :class => 'form-control', multiple: true}) %>
+          <%= f.select(:lab_test_ids, @lab_tests.collect {|u| [u.name, u.id]}, {}, { :class => 'form-control select2', multiple: true}) %>
           <% @user_test.errors.full_messages_for(:lab_test_ids).each do |message| %>
             <div class="text-danger"><%= message %></div>
           <% end %>
@@ -82,7 +82,7 @@
 
         <div class="form-group">
           <label for="status"><%= t('user_tests.fields.status')  %></label>
-          <%= f.select(:test_status, UserTest.statuses.collect {|u| [  UserTest.human_enum_name(:statuses, u[0]),u[1]]}, {  }, { :class => 'form-control'}) %>
+          <%= f.select(:test_status, UserTest.statuses.collect {|u| [  UserTest.human_enum_name(:statuses, u[0]),u[1]]}, {  }, { :class => 'form-control select2'}) %>
           <% @user_test.errors.full_messages_for(:test_status).each do |message| %>
             <div class="text-danger"><%= message %></div>
           <% end %>
@@ -137,14 +137,7 @@
           $("#image_preview_id").removeClass("d-none");
           $("#remove_image_button").removeClass("d-none");
           $("#image").addClass("d-none");
-
-
       }
   }
-
-
-  $('#user_test_doctor_id').select2();
-  $('#user_test_user_id').select2();
-  $('#user_test_lab_test_ids').select2();
 
 </script>

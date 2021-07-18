@@ -26,7 +26,7 @@
         <% if !@lab.new_record? %>
           <div class="form-group">
             <label for="address"><%= t('labs.fields.user')  %></label>
-            <%= f.select(:user_id, @users.collect {|u| [u.email, u.id]},{ include_blank: t('labs.fields.null_email') },{ :class => 'form-control'}) %>
+            <%= f.select(:user_id, @users.collect {|u| [u.email, u.id]},{ include_blank: t('labs.fields.null_email') },{ :class => 'form-control select2'}) %>
             <% @lab.errors.full_messages_for(:user_id).each do |message| %>
               <div class="text-danger"><%= message %></div>
             <% end %>

@@ -6,7 +6,7 @@
           <label for="name">
             <%= t('lab_tests.fields.raw_test') %>
           </label>
-          <%= f.select(:raw_test_id, @raw_tests.collect {|u| [u.name, u.id]},{},{ :class => 'form-control' }) %>
+          <%= f.select(:raw_test_id, @raw_tests.collect {|u| [u.name, u.id]},{},{ :class => 'form-control select2'}) %>
           <% @lab_test.errors.full_messages_for(:raw_test_id).each do |message| %>
             <div class="text-danger"><%= message %></div>
           <% end %>
@@ -31,7 +31,7 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label for="lab"><%= t('lab_tests.fields.lab') %></label>
-          <%= f.select(:lab_id, @labs.collect {|u| [u.name, u.id]},{ },{ :class => 'form-control', :disabled => current_user.role != 2 }) %>
+          <%= f.select(:lab_id, @labs.collect {|u| [u.name, u.id]},{ },{ :class => 'form-control select2', :disabled => current_user.role != 2 }) %>
           <% @lab_test.errors.full_messages_for(:lab_id).each do |message| %>
             <div class="text-danger"><%= message %></div>
           <% end %>
