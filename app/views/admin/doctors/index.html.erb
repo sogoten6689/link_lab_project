@@ -48,7 +48,7 @@
                     <%= doctor.username %>
                   </td>
                   <td>
-                    <%= doctor.image %>
+                    <%= image_tag(doctor.image.url, alt: 'Image', class: "profile-user-img") if doctor.image? %>
                   </td>
                   <td>
                     <%= doctor.phone %>
@@ -57,13 +57,12 @@
                     <%= doctor.address %>
                   </td>
                   <td>
-                    <%#= doctor.lab.name if doctor.lab? %>
+                    <%#= doctor.lab.name if doctor.lab_id.present? %>
                   </td>
                   <td>
                     <%#= doctor.user %>
                   </td>
                   <td>
-                    <%#= link_to "Show", book %>
                     <%= link_to edit_admin_doctor_path(doctor), class: "btn btn-warning btn-sm" do %>
                       <i class="fas fa-edit"></i>
                     <% end %>

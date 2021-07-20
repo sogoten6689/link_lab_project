@@ -31,7 +31,14 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label for="image"><%= t('doctors.fields.image')  %></label>
-          <%= f.text_field :image, class: "form-control", id: "image", placeholder: t('doctors.fields.image') %>
+
+          <input type="file" name="user[image]" class="dropify"
+                 data-max-file-size="500K"
+                 data-show-remove="true"
+                 data-default-file="<%= @user.image %>"
+                 data-allowed-file-extensions="jpg jpeg png gif svg"/>
+          <%= f.file_field :image, id: "image", class: "d-none"%>
+
           <% @user.errors.full_messages_for(:image).each do |message| %>
             <div class="text-danger"><%= message %></div>
           <% end %>

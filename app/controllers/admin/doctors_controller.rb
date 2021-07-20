@@ -39,7 +39,7 @@ class Admin::DoctorsController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(doctor_params)
+    if @user.update(edit_user_params)
       redirect_to  admin_doctors_path
     else
       render :edit, status: :unprocessable_entity
@@ -58,8 +58,9 @@ class Admin::DoctorsController < ApplicationController
     def new_doctor_params
       params.require(:user).permit( :username, :phone, :address, :image, :lab_id, :email)
     end
-    def doctor_params
-      params.require(:doctor).permit(:en_name, :vi_name)
+
+    def edit_user_params
+      params.require(:user).permit( :username, :phone, :address, :role, :image, :lab_id, :email, :file)
     end
 
     def invalid_foreign_key

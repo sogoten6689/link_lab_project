@@ -61,7 +61,6 @@ class Admin::UsersController < ApplicationController
       params.require(:user).permit( :username, :phone, :address, :role, :lab_id, :email)
     end
 
-
     def edit_user_params
       params.require(:user).permit( :username, :phone, :address, :role, :image, :lab_id, :email, :file)
     end
