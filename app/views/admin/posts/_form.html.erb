@@ -1,4 +1,4 @@
-<%= form_for(@post, :url => (@post.new_record? ? admin_posts_path : admin_post_path(@post)), :html => {:id => "post_form_id"}) do |f| %>
+<%= form_for(@post, :url => (@post.new_record? ? admin_posts_path : admin_post_path(@post))) do |f| %>
   <div class="card-body">
     <div class="row">
       <div class="col-sm-6">
@@ -37,7 +37,6 @@
           <% @post.errors.full_messages_for(:image).each do |message| %>
             <div class="text-danger"><%= message %></div>
           <% end %>
-          <div id="image-data"></div>
         </div>
           <div class="form-group">
             <label for="lad"><%= t('labs.fields.lab')  %></label>

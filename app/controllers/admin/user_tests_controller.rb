@@ -5,7 +5,7 @@ class Admin::UserTestsController < ApplicationController
   rescue_from ActiveRecord::InvalidForeignKey, with: :invalid_foreign_key
 
   def index
-    @user_tests = UserTest.all.order(:id)
+    @user_tests = UserTest.select("users.username, user_tests.*").joins("LEFT JOIN users ON users.id = user_tests.user_id")
     @breadcrumbs = [[t('user_tests.name'), admin_user_tests_url]]
   end
 
@@ -18,9 +18,9 @@ class Admin::UserTestsController < ApplicationController
   end
 
   def create
-    @user_test = UserTest.new(new_user_params)
+    @user_test = UserTest.new(new_user_test_params)
     if @user_test.save
-      lab_test_ids = new_user_params[:lab_test_ids].reject { |c| c.empty? }
+      lab_test_ids = new_user_test_params[:lab_test_ids].reject { |c| c.empty? }
       if(!lab_test_ids.nil? && lab_test_ids.length > 0)
         lab_test_ids.each do | lab_test_id |
           new_result_test = ResultTest.new(:user_test_id => @user_test.id, :lab_test_id => lab_test_id, :result_status => 0)
@@ -60,7 +60,7 @@ class Admin::UserTestsController < ApplicationController
 
   def update
     @user_test = UserTest.find(params[:id])
-    lab_test_ids = eidt_user_params[:lab_test_ids].reject { |c| c.empty? }
+    lab_test_ids = edit_user_test_params[:lab_test_ids].reject { |c| c.empty? }
     if @user_test.test_status == 0
       ResultTest.where(:user_test_id => params[:id]).delete_all
       if(!lab_test_ids.nil? && lab_test_ids.length > 0)
@@ -74,37 +74,35 @@ class Admin::UserTestsController < ApplicationController
       end
     end
 
-
-    if @user_test.update(eidt_user_params)
+    if @user_test.update(edit_user_test_params)
       if @user_test.test_status == 0
         redirect_to  admin_user_tests_path
       else
-        redirect_to  admin_user_test_path(@user_test.id)
+        redirect_to  admin_user_test_path(@user_test)
       end
     else
       @doctors = User.all.where(:role => 1)
       @users = User.all.where(:role => 2)
-      @lab_tests = LabTest.all
-      @user_test = UserTest.all.order(:id)
+      @lab_tests = RawTest.joins(:test_type, :lab_test).select('lab_tests.id, concat(raw_tests.name,  \' - \', test_types.vi_name) as name');
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @user_test = UserTest.find(params[:id])
-    # @user_test.remove_image!
-    # @user_test.save
+    @user_test.remove_image!
+    @user_test.save
     @user_test.delete
     redirect_to  admin_user_tests_path
   end
 
   private
-    def new_user_params
-      params.require(:user_test).permit( :doctor_id, :user_id, :phone, :address, :image, :reason, :note, :total, :test_status, :lab_test_ids => [])
+    def new_user_test_params
+      params.require(:user_test).permit( :doctor_id, :user_id, :phone, :address, :image, :file, :reason, :note, :total, :test_status, :lab_test_ids => [])
     end
 
-    def eidt_user_params
-      params.require(:user_test).permit( :doctor_id, :user_id, :phone, :address, :image, :reason, :note, :total, :test_status, :lab_test_ids => [])
+    def edit_user_test_params
+      params.require(:user_test).permit( :doctor_id, :user_id, :phone, :address, :image, :file, :reason, :note, :total, :test_status, :lab_test_ids => [])
     end
 
     def invalid_foreign_key
