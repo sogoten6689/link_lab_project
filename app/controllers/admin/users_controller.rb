@@ -58,11 +58,11 @@ class Admin::UsersController < ApplicationController
 
   private
     def new_user_params
-      params.require(:user).permit( :username, :phone, :address, :role, :lab_id, :email)
+      params.require(:user).permit( :full_name, :phone, :address, :role, :lab_id, :email)
     end
 
     def edit_user_params
-      params.require(:user).permit( :username, :phone, :address, :role, :image, :lab_id, :email, :file)
+      params.require(:user).permit( :full_name, :phone, :address, :role, :image, :lab_id, :email, :file)
     end
 
     def invalid_foreign_key

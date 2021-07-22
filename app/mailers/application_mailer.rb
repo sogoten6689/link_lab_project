@@ -4,7 +4,7 @@ class ApplicationMailer < ActionMailer::Base
 
   def send_password(user, password)
 
-    @hello = "Hello " + user.username + "!"
+    @hello = "Hello " + user.full_name + "!"
     @welcome = "Welcome to LinkLab, please use your below credentials to login:"
     @account = "Your account: " + user.email
     @password = "Your password: " + password

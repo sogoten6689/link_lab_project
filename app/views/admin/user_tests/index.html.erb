@@ -43,7 +43,7 @@
                   </td>
                   <td>
                     <%#= user_test.user.name %>
-                    <%= user_test.username if user_test.user_id %>
+                    <%= user_test.full_name if user_test.user_id %>
                   </td>
                   <td>
                     <%= image_tag(user_test.image.url, alt: 'Image', class: "profile-user-img") if user_test.image? %>

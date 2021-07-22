@@ -56,11 +56,11 @@ class Admin::DoctorsController < ApplicationController
 
   private
     def new_doctor_params
-      params.require(:user).permit( :username, :phone, :address, :image, :lab_id, :email)
+      params.require(:user).permit( :full_name, :phone, :address, :image, :lab_id, :email)
     end
 
     def edit_user_params
-      params.require(:user).permit( :username, :phone, :address, :role, :image, :lab_id, :email, :file)
+      params.require(:user).permit( :full_name, :phone, :address, :role, :image, :lab_id, :email, :file)
     end
 
     def invalid_foreign_key

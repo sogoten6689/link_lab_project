@@ -5,7 +5,7 @@ class Admin::UserTestsController < ApplicationController
   rescue_from ActiveRecord::InvalidForeignKey, with: :invalid_foreign_key
 
   def index
-    @user_tests = UserTest.select("users.username, user_tests.*").joins("LEFT JOIN users ON users.id = user_tests.user_id")
+    @user_tests = UserTest.select("users.full_name, user_tests.*").joins("LEFT JOIN users ON users.id = user_tests.user_id")
     @breadcrumbs = [[t('user_tests.name'), admin_user_tests_url]]
   end
 
