@@ -6,10 +6,10 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">
-              <%= t('user_tests.name') %>
+              <%= t('posts.name') %>
             </h3>
             <div class="card-tools">
-              <%= link_to t('user_tests.new_user_tests'), new_admin_lab_management_user_test_url, class: "btn btn-primary"%>
+              <%= link_to t('posts.new'), new_admin_lab_management_post_url, class: "btn btn-primary"%>
             </div>
           </div>
           <!-- /.card-header -->
@@ -19,55 +19,55 @@
               <tr>
                 <th style="width: 10px">#</th>
                 <th>
-                  <%= t('user_tests.fields.user') %>
+                  <%= t('posts.fields.title') %>
                 </th>
                 <th>
-                  <%= t('user_tests.fields.image') %>
+                  <%= t('posts.fields.image') %>
                 </th>
                 <th>
-                  <%= t('user_tests.fields.reason') %>
+                  <%= t('posts.fields.short_content') %>
                 </th>
                 <th>
-                  <%= t('user_tests.fields.note') %>
+                  <%= t('posts.fields.created_by') %>
                 </th>
                 <th>
-                  <%= t('user_tests.fields.action') %>
+                  <%= t('posts.fields.lab') %>
+                </th>
+                <th>
+                  <%= t('posts.fields.action') %>
                 </th>
               </tr>
               </thead>
               <tbody>
-              <% @user_tests.each do |user_test| %>
+              <% @posts.each do |post| %>
                 <tr>
                   <td>
-                    <%= user_test.id %>
+                    <%= post.id %>
                   </td>
                   <td>
-                    <%= user_test.user_id %>
+                    <%= post.title %>
                   </td>
                   <td>
-                    <%#= image_tag(user_test.image.url, alt: 'Image', class: "profile-user-img") if user_test.image? %>
+                    <%= image_tag(post.image.url, alt: 'Image', class: "profile-post-img") if post.image? %>
                   </td>
                   <td>
-                  <%= user_test.reason %>
+                    <%= post.short_content %>
                   </td>
                   <td>
-                    <%= user_test.note %>
-                    <%#=  User.human_enum_name(:roles, User.roles.key(user.role)) %>
+                    <%= post.short_content %>
+                  </td>
+                  <td>
+                    <%#= post.role %>
+                    <%#=  User.human_enum_name(:roles, User.roles.key(post.role)) %>
                   </td>
                   <td>
                     <%#= link_to "Show", book %>
-                    <%# if user_test.test_status == 0 %>
-                      <%= link_to edit_admin_lab_management_user_test_path(user_test), class: "btn btn-warning btn-sm" do %>
-                        <i class="fas fa-edit"></i>
-                      <% end %>
-                      <%= link_to admin_lab_management_user_test_path(user_test), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm"  do %>
-                        <i class="fas fa-trash"></i>
-                      <% end %>
-                    <%# else %>
-                      <%= link_to admin_lab_management_user_test_path(user_test), class: "btn btn-primary btn-sm" do %>
-                        <i class="fas fa-eye"></i>
-                      <% end %>
-                    <%# end %>
+                    <%= link_to edit_admin_lab_management_post_path(post), class: "btn btn-warning btn-sm" do %>
+                      <i class="fas fa-edit"></i>
+                    <% end %>
+                    <%= link_to admin_lab_management_post_path(post ), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm"  do %>
+                      <i class="fas fa-trash"></i>
+                    <% end %>
                   </td>
                 </tr>
               <% end %>

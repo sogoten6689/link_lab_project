@@ -1,0 +1,127 @@
+<%= form_for(@user, :url => (@user.new_record? ? admin_data_management_user_path : admin_user_path(@user))) do |f| %>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="email"><%= t('users.fields.email') %></label>
+          <%= f.text_field :email, disable: true, class: "form-control disable", id: "email", placeholder: t('users.fields.email') %>
+          <% @user.errors.full_messages_for(:email).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        </div>
+      </div>
+      <% if !@user.new_record? %>
+        <div class="col-sm-6">
+          <div class="form-group ">
+            <label for="image"><%= t('users.fields.image')  %></label>
+            <br>
+            <img src="" alt="image" class="profile-user-img" id="image_preview_id"/>
+            <%= button_tag t('button.delete_btn'), id: "remove_image_button", class: "btn btn-danger" %>
+            <%= f.file_field :image, id: "image", :onchange => "readURL(this);"%>
+            <% @user.errors.full_messages_for(:image).each do |message| %>
+              <div class="text-danger"><%= message %></div>
+            <% end %>
+            <div id="image-data"></div>
+          </div>
+        </div>
+      <% end %>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="username"><%= t('users.fields.username') %></label>
+          <%= f.text_field :username, class: "form-control", id: "username", placeholder: t('users.fields.username') %>
+          <% @user.errors.full_messages_for(:username).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="phone"><%= t('users.fields.phone')  %></label>
+          <%= f.text_field :phone, class: "form-control", id: "phone", placeholder: t('users.fields.phone') %>
+          <% @user.errors.full_messages_for(:phone).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="address"><%= t('users.fields.address')  %></label>
+          <%= f.text_field :address, class: "form-control", id: "address", placeholder: t('users.fields.address') %>
+          <% @user.errors.full_messages_for(:address).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="role"><%= t('users.fields.role')  %></label>
+          <%= f.select(:role, User.roles.collect {|u| [  User.human_enum_name(:roles, u[0]),u[1]]}, {  }, { :class => 'form-control select2'}) %>
+          <% @user.errors.full_messages_for(:role).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="lad"><%= t('labs.fields.lab')  %></label>
+          <%= f.select(:lab_id, @labs.collect {|u| [u.name, u.id]},{ include_blank: t('user.fields.null_lab') },{ :class => 'form-control select2'}) %>
+          <% @user.errors.full_messages_for(:lab_id).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button type="submit" class="btn btn-primary" id="btnSubmit">
+      <%= @user.new_record? ? t('button.new_btn') : t('button.edit_btn') %>
+    </button>
+    <%= link_to t('button.cancel_btn'), admin_data_management_user_path, class: "btn btn-danger"%>
+  </div>
+<% end %>
+
+<% content_for :javascript do %>
+  <script type="text/javascript">
+      $(document).ready(function() {
+          const urlImage = "<%= @user.image %>";
+          if(urlImage){
+              $('#image').addClass("d-none");
+              $('#image_preview_id')
+                  .attr('src', urlImage)
+                  .width(150)
+                  .height(200);
+          }
+          else {
+              $('#image_preview_id').addClass("d-none");
+              $("#remove_image_button").addClass("d-none");
+          }
+
+          $("#remove_image_button").click(function (e) {
+              e.preventDefault();
+              $("#image_preview_id").addClass("d-none");
+              $("#remove_image_button").addClass("d-none");
+              $("#image").removeClass("d-none");
+              $("#image-data").append("<input name='user[remove_image]' id='remove_image' class='d-none' type='checkbox' value='1' checked='true'>");
+              document.getElementById('image').value = "";
+          });
+
+          function readURL(input) {
+              if (input.files && input.files[0]) {
+                  var reader = new FileReader();
+
+                  reader.onload = function (e) {
+                      $('#image_preview_id')
+                          .attr('src', e.target.result)
+                          .width(150)
+                          .height(200);
+                  };
+
+                  reader.readAsDataURL(input.files[0]);
+                  $("#image_preview_id").removeClass("d-none");
+                  $("#remove_image_button").removeClass("d-none");
+                  $("#image").addClass("d-none");
+              }
+          }
+      });
+  </script>
+<% end %>

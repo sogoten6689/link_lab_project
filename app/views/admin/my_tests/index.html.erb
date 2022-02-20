@@ -9,7 +9,7 @@
               <%= t('user_tests.name') %>
             </h3>
             <div class="card-tools">
-              <%= link_to t('user_tests.new_user_tests'), new_admin_user_test_url, class: "btn btn-primary"%>
+              <%= link_to t('user_tests.new_user_tests'), new_admin_lab_management_user_test_url, class: "btn btn-primary"%>
             </div>
           </div>
           <!-- /.card-header -->
@@ -45,7 +45,7 @@
                     <%= user_test.user_id %>
                   </td>
                   <td>
-                    <%= image_tag(user_test.image.url, alt: 'Image', class: "profile-user-img") if user_test.image? %>
+                    <%#= image_tag(user_test.image.url, alt: 'Image', class: "profile-user-img") if user_test.image? %>
                   </td>
                   <td>
                   <%= user_test.reason %>
@@ -57,10 +57,10 @@
                   <td>
                     <%#= link_to "Show", book %>
                     <%# if user_test.test_status == 0 %>
-                      <%#= link_to edit_admin_user_test_path(user_test), class: "btn btn-warning btn-sm" do %>
+                      <%#= link_to edit_admin_lab_management_user_test_path(user_test), class: "btn btn-warning btn-sm" do %>
 <!--                        <i class="fas fa-edit"></i>-->
                       <%# end %>
-                      <%#= link_to admin_user_test_path(user_test), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm"  do %>
+                      <%#= link_to admin_lab_management_user_test_path(user_test), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm"  do %>
 <!--                        <i class="fas fa-trash"></i>-->
                       <%# end %>
                     <%# else %>

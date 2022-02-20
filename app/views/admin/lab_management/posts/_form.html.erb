@@ -1,0 +1,102 @@
+<%= form_for(@post, :url => (@post.new_record? ? admin_lab_management_posts_path : admin_lab_management_post_path(@post)), :html => {:id => "post_form_id"}) do |f| %>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="title"><%= t('posts.fields.title') %></label>
+          <%= f.text_field :title, disable: true, class: "form-control disable", id: "title", placeholder: t('posts.fields.title') %>
+          <% @post.errors.full_messages_for(:title).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <label for="short_content"><%= t('posts.fields.short_content') %></label>
+          <%= f.text_field :short_content, class: "form-control", id: "short_content", placeholder: t('posts.fields.short_content') %>
+          <% @post.errors.full_messages_for(:short_content).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <label for="full_content"><%= t('posts.fields.full_content')  %></label>
+          <%= f.text_field :full_content, class: "form-control", id: "full_content", placeholder: t('posts.fields.full_content') %>
+          <% @post.errors.full_messages_for(:full_content).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group ">
+          <label for="image"><%= t('posts.fields.image')  %></label>
+          <br>
+          <img src="" alt="image" class="profile-post-img" id="image_preview_id">
+          <%= button_tag t('button.delete_btn'), id: "remove_image_button", class: "btn btn-danger" %>
+          <%= f.file_field :image, id: "image", :onchange => "readURL(this);"%>
+          <% @post.errors.full_messages_for(:image).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+          <div id="image-data"></div>
+        </div>
+          <div class="form-group">
+            <label for="lad"><%= t('labs.fields.lab')  %></label>
+            <%= f.select(:lab_id, @labs.collect {|u| [u.name, u.id]},{ include_blank: t('user.fields.null_lab') },{ :class => 'form-control select2'}) %>
+            <% @post.errors.full_messages_for(:lab_id).each do |message| %>
+              <div class="text-danger"><%= message %></div>
+            <% end %>
+          </div>
+      </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button type="submit" class="btn btn-primary" id="btnSubmit">
+      <%= @post.new_record? ? t('button.new_btn') : t('button.edit_btn') %>
+    </button>
+    <%= link_to t('button.cancel_btn'), admin_lab_management_posts_path, class: "btn btn-danger"%>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  var urlImage = "<%= @post.image %>";
+  if(urlImage){
+      $("#image").addClass("d-none");
+      $('#image_preview_id')
+          .attr('src', urlImage)
+          .width(150)
+          .height(200);
+  }
+  else {
+      $('#image_preview_id').addClass("d-none");
+      $("#remove_image_button").addClass("d-none");
+  }
+
+  $("#remove_image_button").click(function (e) {
+      e.preventDefault();
+      $("#image_preview_id").addClass("d-none");
+      $("#remove_image_button").addClass("d-none");
+      $("#image").removeClass("d-none");
+      $("#image-data").append("<input name='post[remove_image]' id='remove_image' class='d-none' type='checkbox' value='1' checked='true'>");
+      document.getElementById('image').value = "";
+  });
+
+  function readURL(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+              $('#image_preview_id')
+                  .attr('src', e.target.result)
+                  .width(150)
+                  .height(200);
+          };
+
+          reader.readAsDataURL(input.files[0]);
+          $("#image_preview_id").removeClass("d-none");
+          $("#remove_image_button").removeClass("d-none");
+          $("#image").addClass("d-none");
+
+
+      }
+  }
+
+</script>

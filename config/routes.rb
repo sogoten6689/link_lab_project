@@ -9,17 +9,21 @@ var = Rails.application.routes.draw do
     post '/admin/register_test', to: "admin/my_tests#create"
     resources :result_tests
     namespace :admin do
+      namespace :data_management do
+        resources :users
+        resources :test_types
+        resources :raw_tests
+        resources :labs
+      end
+      namespace :lab_management do
+        resources :my_labs
+        resources :doctors
+        resources :lab_tests
+        resources :user_tests
+        resources :posts
+      end
       resources :faculties
-      resources :test_types
-      resources :raw_tests
-      resources :labs
-      resources :doctors
-      resources :users
-      resources :lab_tests
-      resources :user_tests
       resources :my_tests
-      resources :posts
-      resources :my_labs
     end
   end
 

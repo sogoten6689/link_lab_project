@@ -1,0 +1,96 @@
+
+<div class="content container-fluid">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <%= t('doctors.name') %>
+            </h3>
+            <div class="card-tools">
+              <%= link_to t('doctors.new'), new_admin_lab_management_doctor_url, class: "btn btn-primary"%>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table class="table table-bordered">
+              <thead>
+              <tr>
+                <th style="width: 10px">#</th>
+                <th>
+                  <%= t('doctors.fields.name') %>
+                </th>
+                <th>
+                  <%= t('doctors.fields.image') %>
+                </th>
+                <th>
+                  <%= t('doctors.fields.phone') %>
+                </th>
+                <th>
+                  <%= t('doctors.fields.address') %>
+                </th>
+                <th>
+                  <%= t('doctors.fields.lab') %>
+                </th>
+                <th>
+                  <%= t('doctors.fields.action') %>
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @doctors.each do |doctor| %>
+                <tr>
+                  <td>
+                    <%= doctor.id %>
+                  </td>
+                  <td>
+                    <%= doctor.username %>
+                  </td>
+                  <td>
+                    <%= doctor.image %>
+                  </td>
+                  <td>
+                    <%= doctor.phone %>
+                  </td>
+                  <td>
+                    <%= doctor.address %>
+                  </td>
+                  <td>
+                    <%#= doctor.lab.name if doctor.lab? %>
+                  </td>
+                  <td>
+                    <%#= doctor.user %>
+                  </td>
+                  <td>
+                    <%#= link_to "Show", book %>
+                    <%= link_to edit_admin_lab_management_doctor_path(doctor), class: "btn btn-warning btn-sm" do %>
+                      <i class="fas fa-edit"></i>
+                    <% end %>
+                    <%= link_to admin_lab_management_doctor_path(doctor), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm"  do %>
+                      <i class="fas fa-trash"></i>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+<!--          <div class="card-footer clearfix">-->
+<!--            <ul class="pagination pagination-sm m-0 float-right">-->
+<!--              <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>-->
+<!--              <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+<!--              <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+<!--              <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+<!--              <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>-->
+<!--            </ul>-->
+<!--          </div>-->
+        </div>
+        <!-- /.card -->
+
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -16,7 +16,7 @@ class ResultTestsController < ApplicationController
   def update
     @result_test = ResultTest.find(params[:id])
     @result_test.update(result_params)
-    redirect_to admin_user_test_path(@result_test['user_test_id'])
+    redirect_to admin_lab_management_user_test_path(@result_test['user_test_id'])
   end
 
   private
