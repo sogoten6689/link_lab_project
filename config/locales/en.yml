@@ -138,7 +138,7 @@ en:
       null_email: "Chưa cấp"
       position: "Vị trí"
       phone: "Số điện thoại"
-      username: "Tên người dùng"
+      full_name: "Tên người dùng"
       lab: "Phòng khám"
     errors:
       invalid_foreign_key: "Tài khoản đang được sửa dụng"

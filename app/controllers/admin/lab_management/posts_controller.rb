@@ -51,10 +51,10 @@ class Admin::LabManagement::PostsController < ApplicationController
 
   private
     def new_post_params
-      params.require(:post).permit( :title, :short_content, :full_content, :lab_id)
+      params.require(:post).permit( :title, :short_content, :full_content, :lab_id, :image, :file)
     end
 
     def eidt_post_params
-      params.require(:post).permit( :title, :short_content, :full_content, :lab_id, :remove_image, :file)
+      params.require(:post).permit( :title, :short_content, :full_content, :lab_id, :image, :file)
     end
 end

@@ -4,7 +4,7 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label for="doctor"><%= t('user_tests.fields.doctor')  %></label>
-          <%= f.select(:doctor_id, @doctors.collect {|u| [u.username, u.id]},{ include_blank: t('user_tests.fields.null_doctor') },{ :class => 'form-control select2'}) %>
+          <%= f.select(:doctor_id, @doctors.collect {|u| [u.full_name, u.id]},{ include_blank: t('user_tests.fields.null_doctor') },{ :class => 'form-control select2'}) %>
           <% @user_test.errors.full_messages_for(:doctor_id).each do |message| %>
             <div class="text-danger"><%= message %></div>
           <% end %>
@@ -12,7 +12,7 @@
 
         <div class="form-group">
           <label for="doctor"><%= t('user_tests.fields.user')  %></label>
-          <%= f.select(:user_id, @users.collect {|u| [u.username, u.id]},{ include_blank: t('user_tests.fields.null_user') },{ :class => 'form-control select2'}) %>
+          <%= f.select(:user_id, @users.collect {|u| [u.full_name, u.id]},{ include_blank: t('user_tests.fields.null_user') },{ :class => 'form-control select2'}) %>
           <% @user_test.errors.full_messages_for(:user_id).each do |message| %>
             <div class="text-danger"><%= message %></div>
           <% end %>

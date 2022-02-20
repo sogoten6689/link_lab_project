@@ -19,7 +19,7 @@
               <tr>
                 <th style="width: 10px">#</th>
                 <th>
-                  <%= t('users.fields.username') %>
+                  <%= t('users.fields.full_name') %>
                 </th>
                 <th>
                   <%= t('users.fields.image') %>
@@ -42,7 +42,7 @@
                     <%= user.id %>
                   </td>
                   <td>
-                    <%= user.username %>
+                    <%= user.full_name %>
                   </td>
                   <td>
                     <%= image_tag(user.image.url, alt: 'Image', class: "profile-user-img") if user.image? %>
