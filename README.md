@@ -33,4 +33,12 @@ Things you may want to cover:
 
 
 ## migrattion
-*
+
+# webpack
+* heroku buildpacks
+* rake assets:precompile RAILS_ENV=production
+* bundle exec bin/webpack-dev-server
+* rake assets:precompile
+
+# reset last commit
+* git reset HEAD~    
