@@ -29,6 +29,8 @@ Things you may want to cover:
 * heroku login
 * heroku logs
 * heroku run db:migrate
+* RAILS_ENV=production bundle exec rake assets:precompile
+
 
 ## migrattion
 *
