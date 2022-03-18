@@ -29,8 +29,6 @@ gem 'carrierwave'
 
 gem 'mini_magick'
 
-gem 'fog'
-
 gem "devise", "~> 4.1"
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
